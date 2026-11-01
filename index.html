@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gillibrand Record Search</title>
+<style>
+:root{--bg:#f7f7f5;--panel:#fff;--ink:#1d1f23;--muted:#5f6670;--line:#dfe1e4;--accent:#1f4e8c;--accent-ink:#fff;--hl:#fff1a8;--chip:#eef2f8}
+@media (prefers-color-scheme:dark){:root{--bg:#15171a;--panel:#1e2125;--ink:#e8e9eb;--muted:#a2a8b1;--line:#33373d;--accent:#6c9be0;--accent-ink:#0f1114;--hl:#5a4c00;--chip:#26303d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:20px 16px 8px;max-width:1300px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px}
+main{max-width:1300px;margin:0 auto;padding:0 16px 40px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+label{font-weight:600;font-size:13px;display:block;margin-bottom:4px}
+.hint{color:var(--muted);font-size:12px;font-weight:400}
+textarea,input,select{font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:7px 9px;width:100%}
+textarea{min-height:120px;resize:vertical}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.row>div{flex:1;min-width:140px}
+.checks{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.checks label{font-weight:400;display:flex;gap:6px;align-items:center;margin:0}
+.checks input{width:auto}
+button{font:inherit;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:8px 14px;cursor:pointer;font-weight:600}
+button.secondary{background:transparent;color:var(--accent)}
+button:disabled{opacity:.5;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:8px 0}
+.stat{border:1px solid var(--line);border-radius:8px;padding:10px}
+.stat b{display:block;font-size:22px}
+.stat span{color:var(--muted);font-size:12px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:var(--panel);cursor:pointer;white-space:nowrap;font-size:13px}
+td.date{white-space:nowrap}
+.kind{font-size:12px;padding:2px 7px;border-radius:10px;background:var(--chip);white-space:nowrap}
+.terms{font-size:12px;color:var(--muted)}
+mark{background:var(--hl);color:inherit}
+.snip{color:var(--muted);font-size:13px;margin-top:4px}
+a{color:var(--accent)}
+#status{color:var(--muted);font-size:13px}
+details summary{cursor:pointer;color:var(--accent);font-size:13px}
+pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px;font-size:13px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}th:nth-child(5),td:nth-child(5){display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Gillibrand Record Search</h1>
+  <div class="sub">Every bill Sen. Kirsten Gillibrand sponsored or co-sponsored (Congress.gov) and every press release on gillibrand.senate.gov. <span id="dataInfo">Loading data…</span></div>
+</header>
+<main>
+  <section class="panel">
+    <div class="grid">
+      <div>
+        <label for="terms">Search terms <span class="hint">— one word or phrase per line; a record matches if it contains <b>any</b> of them (whole words, not case-sensitive)</span></label>
+        <textarea id="terms" placeholder="Social Security&#10;SSI&#10;retirement benefits"></textarea>
+        <details style="margin-top:8px">
+          <summary>Searching a broad topic? Get a full term list from Claude</summary>
+          <p class="hint">Type the topic, click <b>Copy prompt</b>, paste into a Claude chat, then paste Claude's list back into the box above.</p>
+          <div class="row"><div><input id="topic" placeholder="e.g. the Iran war"></div><div style="flex:0"><button class="secondary" id="copyPrompt" type="button">Copy prompt</button></div></div>
+          <pre id="promptPreview" hidden></pre>
+        </details>
+      </div>
+      <div>
+        <label for="congress">Time period</label>
+        <select id="congress"></select>
+        <div class="row" style="margin-top:8px">
+          <div><label for="from">From</label><input type="date" id="from"></div>
+          <div><label for="to">To</label><input type="date" id="to"></div>
+        </div>
+        <label style="margin-top:10px">Include</label>
+        <div class="checks">
+          <label><input type="checkbox" id="incPress" checked> Press releases</label>
+          <label><input type="checkbox" id="incSp" checked> Sponsored bills</label>
+          <label><input type="checkbox" id="incCo" checked> Co-sponsored bills</label>
+        </div>
+        <div class="row" style="margin-top:14px">
+          <div style="flex:0"><button id="go" disabled>Search</button></div>
+          <div style="flex:0"><button class="secondary" id="csv" disabled>Download Excel (CSV)</button></div>
+        </div>
+      </div>
+    </div>
+    <div id="status"></div>
+  </section>
+
+  <section class="panel" id="results" hidden>
+    <h2 style="margin:0 0 6px;font-size:18px">Overview</h2>
+    <div id="overview"></div>
+    <div class="stats" id="stats"></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th data-k="kind">Type</th><th data-k="title">Title</th><th data-k="date">Date ▼</th>
+          <th data-k="summary">Summary</th><th data-k="terms">Matched terms</th><th>Link</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+  <p class="sub">Dates: press releases use the publication date; bills use the date introduced (co-sponsor date shown when different). Summaries for bills are the official Congressional Research Service summary when one exists. Data refreshes nightly.</p>
+</main>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+let PRESS = [], BILLS = [], META = {}, ROWS = [], SORT = {k: "date", dir: -1};
+
+function congressRange(n){ const y = 1789 + 2*(n-1); return [`${y}-01-03`, `${y+2}-01-03`]; }
+function ord(n){ const s = (n%100>=11&&n%100<=13)?"th":({1:"st",2:"nd",3:"rd"}[n%10]||"th"); return n+s; }
+
+async function getJSON(p){ const r = await fetch(p, {cache: "no-cache"}); if(!r.ok) throw new Error(p+" "+r.status); return r.json(); }
+
+async function load(){
+  try{
+    const [pm, bm] = await Promise.all([getJSON("data/press_meta.json").catch(()=>({})), getJSON("data/bills_meta.json").catch(()=>({}))]);
+    META = {pm, bm};
+    const cur = bm.current_congress || 119;
+    const years = Object.keys(pm.by_year || {});
+    const congresses = []; for(let c=110;c<=cur;c++) congresses.push(c);
+    $("status").textContent = "Loading records…";
+    const press = await Promise.all(years.map(y => getJSON(`data/press/${y}.json`).catch(()=>[])));
+    const bills = await Promise.all(congresses.map(c => getJSON(`data/bills/${c}.json`).catch(()=>[])));
+    PRESS = press.flat().map(r => ({...r, _hay: (r.title + "\n" + r.text)}));
+    BILLS = bills.flat().filter(b => !b.withdrawn).map(b => ({...b, _hay: [b.title, b.summary, b.policy_area, (b.subjects||[]).join("; "), b.latest_action].join("\n")}));
+    const sel = $("congress");
+    sel.innerHTML = `<option value="all">All years</option><option value="${cur}">Current Congress (${ord(cur)})</option>` +
+      congresses.slice().reverse().filter(c=>c!==cur).map(c => `<option value="${c}">${ord(c)} Congress (${congressRange(c)[0].slice(0,4)}–${congressRange(c)[1].slice(0,4)})</option>`).join("") +
+      `<option value="custom">Custom dates…</option>`;
+    $("dataInfo").textContent = `Loaded ${PRESS.length.toLocaleString()} press releases (${pm.oldest||"?"} to ${pm.newest||"?"}) and ${BILLS.length.toLocaleString()} bills. Last updated ${(bm.updated||pm.updated||"").slice(0,10)}.` + (bm.finished===false ? " Bill download still in progress; some bills not yet included." : "");
+    $("status").textContent = "";
+    $("go").disabled = false;
+    readURL();
+  }catch(e){ $("status").textContent = "Could not load data: " + e.message; }
+}
+
+function escRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function termRegex(t){
+  const parts = t.trim().split(/\s+/).map(escRe).join("[\\s\\-‐-―]+");
+  return new RegExp(`(?<![\\p{L}\\p{N}])${parts}(?![\\p{L}\\p{N}])`, "iu");
+}
+function esc(s){ return String(s??"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function sentences(t, n){
+  const s = (t||"").replace(/\s+/g," ").trim(), limit = n*160;
+  if(s.length <= limit) return s;
+  const cut = s.slice(0, limit), i = cut.lastIndexOf(". ");
+  return i > 120 ? cut.slice(0, i+1) : cut.replace(/\s\S*$/, "") + "…";
+}
+function pl(n, w){ return `${n.toLocaleString()} ${w}${n===1?"":"s"}`; }
+
+function currentFilters(){
+  const terms = $("terms").value.split(/\n|;/).map(s=>s.trim()).filter(Boolean);
+  const c = $("congress").value;
+  let from = $("from").value, to = $("to").value, congress = null;
+  if(c !== "all" && c !== "custom"){ congress = +c; [from, to] = congressRange(congress); }
+  return {terms, from, to, congress, press: $("incPress").checked, sp: $("incSp").checked, co: $("incCo").checked};
+}
+
+function run(){
+  const f = currentFilters();
+  if(!f.terms.length){ $("status").textContent = "Enter at least one search term."; return; }
+  const res = f.terms.map(t => [t, termRegex(t)]);
+  const inRange = d => (!f.from || d >= f.from) && (!f.to || d < f.to || (!f.congress && d <= f.to));
+  const out = [];
+  const match = hay => res.filter(([, re]) => re.test(hay)).map(([t]) => t);
+  if(f.press) for(const r of PRESS){
+    if(!inRange(r.date)) continue;
+    const m = match(r._hay); if(!m.length) continue;
+    out.push({kind: "Press release", title: r.title, date: r.date, summary: sentences(r.text, 2), terms: m, url: r.url, hay: r._hay});
+  }
+  for(const b of BILLS){
+    if(b.role === "Sponsor" ? !f.sp : !f.co) continue;
+    if(f.congress ? b.congress !== f.congress : !inRange(b.introduced)) continue;
+    const m = match(b._hay); if(!m.length) continue;
+    const sum = b.summary ? sentences(b.summary, 3) : "(No official summary yet.) " + b.title;
+    out.push({kind: b.role === "Sponsor" ? "Sponsored bill" : "Co-sponsored bill", title: `${b.label} — ${b.title}`, date: b.introduced,
+      cosDate: b.role === "Cosponsor" && b.cosponsor_date && b.cosponsor_date !== b.introduced ? b.cosponsor_date : "",
+      summary: sum, terms: m, url: b.url, hay: b._hay, congress: b.congress, subjects: b.subjects, policy: b.policy_area});
+  }
+  ROWS = out; render(f); writeURL(f);
+}
+
+function render(f){
+  const rows = ROWS.slice().sort((a,b) => { const x = SORT.k==="terms" ? a.terms.length : (a[SORT.k]||""), y = SORT.k==="terms" ? b.terms.length : (b[SORT.k]||""); return (x>y?1:x<y?-1:0)*SORT.dir; });
+  const n = k => ROWS.filter(r => r.kind === k).length;
+  const press = n("Press release"), sp = n("Sponsored bill"), co = n("Co-sponsored bill");
+  const today = new Date().toISOString().slice(0,10);
+  const period = f.congress ? `the ${ord(f.congress)} Congress (${f.from.slice(0,4)}–${f.to > today ? "present" : f.to.slice(0,4)})` : (f.from||f.to) ? `${f.from||"the beginning"} to ${f.to||"today"}` : "all available years";
+  const termCounts = {}; ROWS.forEach(r => r.terms.forEach(t => termCounts[t] = (termCounts[t]||0)+1));
+  const top = Object.entries(termCounts).sort((a,b)=>b[1]-a[1]).map(([t,c]) => `${esc(t)} (${c})`).join(", ");
+  const policies = {}; ROWS.filter(r=>r.policy).forEach(r => policies[r.policy] = (policies[r.policy]||0)+1);
+  const topPol = Object.entries(policies).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([p,c]) => `${esc(p)} (${c})`).join(", ");
+  $("overview").innerHTML = `<p>Found <b>${pl(ROWS.length,"record")}</b> for ${period}: <b>${pl(press,"press release")}</b> and <b>${pl(sp+co,"bill")}</b> (${sp.toLocaleString()} sponsored, ${co.toLocaleString()} co-sponsored).</p>` +
+    (top ? `<p class="hint">Matches by term: ${top}.</p>` : "") + (topPol ? `<p class="hint">Most common bill policy areas: ${topPol}.</p>` : "");
+  $("stats").innerHTML = [["Total", ROWS.length], ["Press releases", press], ["Bills sponsored", sp], ["Bills co-sponsored", co]].map(([l,v]) => `<div class="stat"><b>${v.toLocaleString()}</b><span>${l}</span></div>`).join("");
+  const res = f.terms.map(termRegex);
+  $("tbody").innerHTML = rows.map(r => {
+    let snip = "";
+    for(const re of res){ const m = re.exec(r.hay); if(m){ const s = Math.max(0, m.index-110), e = Math.min(r.hay.length, m.index+m[0].length+110);
+      snip = (s?"…":"") + esc(r.hay.slice(s, m.index)) + "<mark>" + esc(m[0]) + "</mark>" + esc(r.hay.slice(m.index+m[0].length, e)) + (e<r.hay.length?"…":""); break; } }
+    return `<tr><td><span class="kind">${r.kind}</span></td><td>${esc(r.title)}${snip ? `<div class="snip">${snip.replace(/\n/g," ")}</div>` : ""}</td>` +
+      `<td class="date">${r.date}${r.cosDate ? `<div class="hint">co-sponsored ${r.cosDate}</div>` : ""}</td><td>${esc(r.summary)}</td><td class="terms">${r.terms.map(esc).join(", ")}</td><td><a href="${esc(r.url)}" target="_blank" rel="noopener">Open</a></td></tr>`;
+  }).join("");
+  $("results").hidden = false; $("csv").disabled = !ROWS.length;
+  $("status").textContent = "";
+}
+
+function csv(){
+  const q = s => '"' + String(s??"").replace(/"/g,'""') + '"';
+  const head = ["Type","Title","Date","Co-sponsor date","Congress","Summary","Matched terms","Policy area","Link"];
+  const lines = [head.map(q).join(",")].concat(ROWS.slice().sort((a,b)=> a.date<b.date?1:-1).map(r => [r.kind, r.title, r.date, r.cosDate||"", r.congress||"", r.summary, r.terms.join("; "), r.policy||"", r.url].map(q).join(",")));
+  const blob = new Blob(["﻿" + lines.join("\r\n")], {type: "text/csv;charset=utf-8"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+  a.download = `gillibrand-search-${new Date().toISOString().slice(0,10)}.csv`; a.click();
+}
+
+function writeURL(f){
+  const p = new URLSearchParams(); p.set("q", f.terms.join("|")); p.set("p", $("congress").value);
+  if($("congress").value === "custom"){ if(f.from) p.set("from", f.from); if(f.to) p.set("to", f.to); }
+  history.replaceState(null, "", "?" + p.toString());
+}
+function readURL(){
+  const p = new URLSearchParams(location.search);
+  if(p.get("p")) $("congress").value = p.get("p");
+  if(p.get("from")) $("from").value = p.get("from");
+  if(p.get("to")) $("to").value = p.get("to");
+  syncDates();
+  if(p.get("q")){ $("terms").value = p.get("q").split("|").join("\n"); run(); }
+}
+function syncDates(){
+  const c = $("congress").value, custom = c === "custom";
+  $("from").disabled = $("to").disabled = !custom;
+  if(c === "all"){ $("from").value = $("to").value = ""; }
+  else if(!custom){ const [a,b] = congressRange(+c); $("from").value = a; $("to").value = b; }
+}
+function promptText(topic){
+  return `I'm searching every bill Senator Kirsten Gillibrand sponsored or co-sponsored and every press release she issued, using a plain keyword search (a record matches if it contains any listed term as a whole word or phrase).
+
+Topic: ${topic}
+
+List every search term and phrase I should use to find ALL records related to this topic, including indirect connections (related legislation such as War Powers resolutions or AUMFs, key officials, places, programs, agencies, acronyms, and alternate spellings). Prefer specific phrases over single common words that would match unrelated records. Output only the terms, one per line, no numbering or commentary.`;
+}
+
+$("go").onclick = run;
+$("csv").onclick = csv;
+$("congress").onchange = syncDates;
+$("terms").addEventListener("keydown", e => { if(e.key === "Enter" && (e.ctrlKey || e.metaKey)) run(); });
+document.querySelectorAll("th[data-k]").forEach(th => th.onclick = () => {
+  const k = th.dataset.k; SORT = {k, dir: SORT.k === k ? -SORT.dir : (k==="date"?-1:1)};
+  document.querySelectorAll("th[data-k]").forEach(h => h.textContent = h.textContent.replace(/ [▲▼]$/, ""));
+  th.textContent += SORT.dir > 0 ? " ▲" : " ▼"; render(currentFilters());
+});
+$("copyPrompt").onclick = async () => {
+  const t = promptText($("topic").value.trim() || "(your topic)");
+  $("promptPreview").textContent = t; $("promptPreview").hidden = false;
+  try{ await navigator.clipboard.writeText(t); $("copyPrompt").textContent = "Copied!"; setTimeout(()=>$("copyPrompt").textContent="Copy prompt", 1500); }catch(e){}
+};
+load();
+</script>
+</body>
+</html>
