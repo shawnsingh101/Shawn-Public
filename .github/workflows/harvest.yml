@@ -1,0 +1,53 @@
+name: harvest
+on:
+  schedule:
+    - cron: "17 7 * * *"   # nightly (runs from the default branch)
+  workflow_dispatch:
+  push:
+    branches: [claude/gillibrand-legislative-research-1a5u07]
+    paths: [harvest/**, .github/workflows/harvest.yml]
+permissions:
+  contents: write
+concurrency:
+  group: harvest-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  press:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python harvest/press.py
+      - name: Commit data
+        run: |
+          git config user.name "harvest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && exit 0
+          git commit -m "Update press releases data"
+          for i in 1 2 3; do git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && break; sleep 5; done
+  bills:
+    needs: press
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python harvest/bills.py
+        env:
+          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+          BUDGET_MIN: "330"
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "harvest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && exit 0
+          git commit -m "Update bills data"
+          for i in 1 2 3; do git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && break; sleep 5; done
