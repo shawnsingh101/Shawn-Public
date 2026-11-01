@@ -95,7 +95,7 @@ pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);borde
       <table>
         <thead><tr>
           <th data-k="kind">Type</th><th data-k="title">Title</th><th data-k="date">Date ▼</th>
-          <th data-k="summary">Summary</th><th data-k="terms">Matched terms</th><th>Link</th>
+          <th data-k="summary">Summary</th><th data-k="hits">Relevance</th><th>Link</th>
         </tr></thead>
         <tbody id="tbody"></tbody>
       </table>
@@ -141,6 +141,11 @@ function termRegex(t){
   const parts = t.trim().split(/\s+/).map(escRe).join("[\\s\\-‐-―]+");
   return new RegExp(`(?<![\\p{L}\\p{N}])${parts}(?![\\p{L}\\p{N}])`, "iu");
 }
+function strength(title, hay, res){
+  let n = 0, inTitle = false;
+  for(const [, re] of res){ const g = new RegExp(re.source, "giu"); n += (hay.match(g)||[]).length; if(re.test(title)) inTitle = true; }
+  return {hits: n, level: (inTitle || n >= 3) ? "Main topic" : "Mentioned"};
+}
 function esc(s){ return String(s??"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 function sentences(t, n){
   const s = (t||"").replace(/\s+/g," ").trim(), limit = n*160;
@@ -168,14 +173,14 @@ function run(){
   if(f.press) for(const r of PRESS){
     if(!inRange(r.date)) continue;
     const m = match(r._hay); if(!m.length) continue;
-    out.push({kind: "Press release", title: r.title, date: r.date, summary: sentences(r.text, 2), terms: m, url: r.url, hay: r._hay});
+    out.push({...strength(r.title, r._hay, res), kind: "Press release", title: r.title, date: r.date, summary: sentences(r.text, 2), terms: m, url: r.url, hay: r._hay});
   }
   for(const b of BILLS){
     if(b.role === "Sponsor" ? !f.sp : !f.co) continue;
     if(f.congress ? b.congress !== f.congress : !inRange(b.introduced)) continue;
     const m = match(b._hay); if(!m.length) continue;
     const sum = b.summary ? sentences(b.summary, 3) : "(No official summary yet.) " + b.title;
-    out.push({kind: b.role === "Sponsor" ? "Sponsored bill" : "Co-sponsored bill", title: `${b.label} — ${b.title}`, date: b.introduced,
+    out.push({...strength(b.title + " " + (b.subjects||[]).join(" "), b._hay, res), kind: b.role === "Sponsor" ? "Sponsored bill" : "Co-sponsored bill", title: `${b.label} — ${b.title}`, date: b.introduced,
       cosDate: b.role === "Cosponsor" && b.cosponsor_date && b.cosponsor_date !== b.introduced ? b.cosponsor_date : "",
       summary: sum, terms: m, url: b.url, hay: b._hay, congress: b.congress, subjects: b.subjects, policy: b.policy_area});
   }
@@ -183,8 +188,8 @@ function run(){
 }
 
 function render(f){
-  const rows = ROWS.slice().sort((a,b) => { const x = SORT.k==="terms" ? a.terms.length : (a[SORT.k]||""), y = SORT.k==="terms" ? b.terms.length : (b[SORT.k]||""); return (x>y?1:x<y?-1:0)*SORT.dir; });
-  const n = k => ROWS.filter(r => r.kind === k).length;
+  const rows = ROWS.slice().sort((a,b) => { const x = a[SORT.k]||"", y = b[SORT.k]||""; return (x>y?1:x<y?-1:0)*SORT.dir; });
+  const n = k => ROWS.filter(r => r.kind === k).length, main = ROWS.filter(r => r.level === "Main topic").length;
   const press = n("Press release"), sp = n("Sponsored bill"), co = n("Co-sponsored bill");
   const today = new Date().toISOString().slice(0,10);
   const period = f.congress ? `the ${ord(f.congress)} Congress (${f.from.slice(0,4)}–${f.to > today ? "present" : f.to.slice(0,4)})` : (f.from||f.to) ? `${f.from||"the beginning"} to ${f.to||"today"}` : "all available years";
@@ -193,7 +198,7 @@ function render(f){
   const policies = {}; ROWS.filter(r=>r.policy).forEach(r => policies[r.policy] = (policies[r.policy]||0)+1);
   const topPol = Object.entries(policies).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([p,c]) => `${esc(p)} (${c})`).join(", ");
   $("overview").innerHTML = `<p>Found <b>${pl(ROWS.length,"record")}</b> for ${period}: <b>${pl(press,"press release")}</b> and <b>${pl(sp+co,"bill")}</b> (${sp.toLocaleString()} sponsored, ${co.toLocaleString()} co-sponsored).</p>` +
-    (top ? `<p class="hint">Matches by term: ${top}.</p>` : "") + (topPol ? `<p class="hint">Most common bill policy areas: ${topPol}.</p>` : "");
+    `<p>${pl(main,"record")} ${main===1?"has":"have"} the topic as a <b>main focus</b> (in the title/subjects, or mentioned 3+ times); ${pl(ROWS.length-main,"record")} only <b>mention</b> it. Click “Relevance” to sort by strength.</p>` + (top ? `<p class="hint">Matches by term: ${top}.</p>` : "") + (topPol ? `<p class="hint">Most common bill policy areas: ${topPol}.</p>` : "");
   $("stats").innerHTML = [["Total", ROWS.length], ["Press releases", press], ["Bills sponsored", sp], ["Bills co-sponsored", co]].map(([l,v]) => `<div class="stat"><b>${v.toLocaleString()}</b><span>${l}</span></div>`).join("");
   const res = f.terms.map(termRegex);
   $("tbody").innerHTML = rows.map(r => {
@@ -201,7 +206,7 @@ function render(f){
     for(const re of res){ const m = re.exec(r.hay); if(m){ const s = Math.max(0, m.index-110), e = Math.min(r.hay.length, m.index+m[0].length+110);
       snip = (s?"…":"") + esc(r.hay.slice(s, m.index)) + "<mark>" + esc(m[0]) + "</mark>" + esc(r.hay.slice(m.index+m[0].length, e)) + (e<r.hay.length?"…":""); break; } }
     return `<tr><td><span class="kind">${r.kind}</span></td><td>${esc(r.title)}${snip ? `<div class="snip">${snip.replace(/\n/g," ")}</div>` : ""}</td>` +
-      `<td class="date">${r.date}${r.cosDate ? `<div class="hint">co-sponsored ${r.cosDate}</div>` : ""}</td><td>${esc(r.summary)}</td><td class="terms">${r.terms.map(esc).join(", ")}</td><td><a href="${esc(r.url)}" target="_blank" rel="noopener">Open</a></td></tr>`;
+      `<td class="date">${r.date}${r.cosDate ? `<div class="hint">co-sponsored ${r.cosDate}</div>` : ""}</td><td>${esc(r.summary)}</td><td class="terms"><b>${r.level}</b><br>${r.hits} mention${r.hits===1?"":"s"}: ${r.terms.map(esc).join(", ")}</td><td><a href="${esc(r.url)}" target="_blank" rel="noopener">Open</a></td></tr>`;
   }).join("");
   $("results").hidden = false; $("csv").disabled = !ROWS.length;
   $("status").textContent = "";
@@ -209,8 +214,8 @@ function render(f){
 
 function csv(){
   const q = s => '"' + String(s??"").replace(/"/g,'""') + '"';
-  const head = ["Type","Title","Date","Co-sponsor date","Congress","Summary","Matched terms","Policy area","Link"];
-  const lines = [head.map(q).join(",")].concat(ROWS.slice().sort((a,b)=> a.date<b.date?1:-1).map(r => [r.kind, r.title, r.date, r.cosDate||"", r.congress||"", r.summary, r.terms.join("; "), r.policy||"", r.url].map(q).join(",")));
+  const head = ["Type","Title","Date","Co-sponsor date","Congress","Summary","Relevance","Mentions","Matched terms","Policy area","Link"];
+  const lines = [head.map(q).join(",")].concat(ROWS.slice().sort((a,b)=> a.date<b.date?1:-1).map(r => [r.kind, r.title, r.date, r.cosDate||"", r.congress||"", r.summary, r.level, r.hits, r.terms.join("; "), r.policy||"", r.url].map(q).join(",")));
   const blob = new Blob(["﻿" + lines.join("\r\n")], {type: "text/csv;charset=utf-8"});
   const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
   a.download = `gillibrand-search-${new Date().toISOString().slice(0,10)}.csv`; a.click();
@@ -248,7 +253,7 @@ $("csv").onclick = csv;
 $("congress").onchange = syncDates;
 $("terms").addEventListener("keydown", e => { if(e.key === "Enter" && (e.ctrlKey || e.metaKey)) run(); });
 document.querySelectorAll("th[data-k]").forEach(th => th.onclick = () => {
-  const k = th.dataset.k; SORT = {k, dir: SORT.k === k ? -SORT.dir : (k==="date"?-1:1)};
+  const k = th.dataset.k; SORT = {k, dir: SORT.k === k ? -SORT.dir : ((k==="date"||k==="hits")?-1:1)};
   document.querySelectorAll("th[data-k]").forEach(h => h.textContent = h.textContent.replace(/ [▲▼]$/, ""));
   th.textContent += SORT.dir > 0 ? " ▲" : " ▼"; render(currentFilters());
 });
