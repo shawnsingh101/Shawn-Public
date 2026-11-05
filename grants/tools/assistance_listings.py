@@ -5,7 +5,7 @@ Tries the public bulk extract first (no key); falls back to the SAM.gov API
 when SAM_API_KEY is set. Each record keeps the listing number, title, agency,
 objectives, eligibility, uses, financial info, contacts and website.
 """
-import csv, io, json, os, sys, urllib.request, urllib.parse
+import csv, io, json, os, sys, urllib.error, urllib.request, urllib.parse
 
 UA = "gillibrand-grant-guides/0.1 (+https://github.com/shawnsingh101/Shawn-Public)"
 OUT = os.path.join("grants", "data", "assistance_listings.json")
@@ -34,22 +34,44 @@ def from_extract():
     return []
 
 
+def api_call(key, **params):
+    q = urllib.parse.urlencode({"api_key": key, **params})
+    try:
+        st, body = get(f"https://api.sam.gov/assistance-listings/v1/search?{q}")
+        return json.loads(body), None
+    except urllib.error.HTTPError as e:
+        return None, f"{e.code}: {e.read()[:400]!r}"
+    except Exception as e:
+        return None, str(e)
+
+
 def from_api(key):
-    out, page = [], 0
-    while True:
-        q = urllib.parse.urlencode({"api_key": key, "pageSize": 100, "pageNumber": page, "status": "Active"})
-        try:
-            st, body = get(f"https://api.sam.gov/assistance-listings/v1/search?{q}")
-        except Exception as e:
-            print("API error:", e); break
-        j = json.loads(body)
-        if page == 0:
-            print("API keys:", list(j.keys())[:20])
-        items = j.get("assistanceListingsData") or j.get("results") or j.get("data") or []
-        out.extend(items)
-        if not items or len(items) < 100:
-            break
-        page += 1
+    from datetime import date
+    base = {"publishedDateTo": date.today().isoformat()}
+    j, err = api_call(key, **base)
+    if err:
+        print("API base call error:", err); return []
+    print("API keys:", list(j.keys()), "totalPages:", j.get("totalPages"), "totalRecords:", j.get("totalRecords"))
+    first = j.get("assistanceListingsData") or []
+    if first:
+        print("record fields:", list(first[0].keys()))
+    # find the paging parameter that actually changes the page
+    pager = None
+    for cand in ("pageNumber", "page", "offset"):
+        j2, err2 = api_call(key, **base, **{cand: 1})
+        d2 = (j2 or {}).get("assistanceListingsData") or []
+        print(f"paging param {cand}: err={err2} first={(d2[0].get('assistanceListingId') if d2 else None)}")
+        if d2 and first and d2[0] != first[0]:
+            pager = cand; break
+    out = list(first)
+    pages = int(j.get("totalPages") or 1)
+    if pager:
+        for n in range(1, pages):
+            jn, errn = api_call(key, **base, **{pager: n})
+            if errn:
+                print("page", n, errn); break
+            out.extend(jn.get("assistanceListingsData") or [])
+    print("downloaded", len(out), "listings via API")
     return out
 
 
