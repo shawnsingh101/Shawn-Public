@@ -155,6 +155,7 @@ def build(content_path, out_dir):
     b = Builder(tpl)
     b.cover(c["title_lines"], c["year"])
     # Contents page: section and entry names (no page numbers, so it never goes stale).
+    b.page_break()
     b.h1("In This Guide")
     for sec in c["sections"]:
         b.para(f"**{sec['title']}**")
