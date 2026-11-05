@@ -28,6 +28,22 @@ def text_of(raw, ctype):
     return (("# " + html.unescape(title.group(1)).strip() + "\n\n") if title else "") + t
 
 
+def render(url):
+    """Load a page in a headless browser so content built by JavaScript is included.
+    Used only for pages that loaded fine (HTTP 200) but came back nearly empty."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return ""
+    with sync_playwright() as p:
+        b = p.chromium.launch()
+        pg = b.new_page(user_agent=UA)
+        pg.goto(url, wait_until="networkidle", timeout=60000)
+        h = pg.content()
+        b.close()
+    return text_of(h.encode(), "text/html")
+
+
 def main(src):
     guide = os.path.splitext(os.path.basename(src))[0]
     out = os.path.join("grants", "snapshots", guide)
@@ -46,6 +62,13 @@ def main(src):
             status, body = e.code, ""
         except Exception as e:  # DNS, TLS, timeout
             status, body, note = "error", "", str(e)[:120]
+        if status == 200 and len(body) < 1500:
+            try:
+                rb = render(final)
+                if len(rb) > len(body):
+                    body, note = rb, "rendered in browser"
+            except Exception as e:
+                note = "render failed: " + str(e)[:80]
         slug = re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")[:60]
         if body:
             with open(os.path.join(out, f"{i:02d}-{slug}.md"), "w") as f:
