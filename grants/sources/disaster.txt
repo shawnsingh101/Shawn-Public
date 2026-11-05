@@ -1,0 +1,60 @@
+# label | url   (pages the Disaster Relief guide relies on; original links + current official pages)
+orig: DisasterAssistance.gov | https://www.disasterassistance.gov/
+orig: NYS OEM | https://www.dhses.ny.gov/office-emergency-management
+orig: SBA ODRR | https://www.sba.gov/about-sba/sba-locations/headquarters-offices/office-disaster-recovery-resilience
+orig: USDA Disaster Resource Center | https://www.usda.gov/topics/disaster-resource-center
+orig: farmers.gov recover | https://www.farmers.gov/recover
+orig: USDA email signup | https://public.govdelivery.com/accounts/USDAFARMERS/subscriber/new?topic_id=USDAFARMERS_21
+orig: ACL programs | https://acl.gov/programs
+orig: HUD 203h | https://www.hud.gov/program_offices/housing/sfh/ins/203h-dft
+orig: HUD 203k | https://www.hud.gov/program_offices/housing/sfh/203k/203k--df
+orig: BIA FASS | https://www.bia.gov/bia/ois/dhs/financial-assistance
+orig: USDA B&I | https://www.rd.usda.gov/programs-services/business-programs/business-industry-loan-guarantees
+orig: GoDirect | https://godirect.gov/gpw/before-you-begin/
+orig: Direct Express | https://www.usdirectexpress.com/
+orig: Crop insurance | https://www.usda.gov/topics/farming/crop-and-livestock-insurance
+orig: D-SNAP | https://www.fns.usda.gov/disaster/disaster-assistance
+orig: FSA Emergency Loans | https://www.fsa.usda.gov/programs-and-services/farm-loan-programs/emergency-farm-loans/index
+orig: FSA NAP | https://www.fsa.usda.gov/programs-and-services/disaster-assistance-program/noninsured-crop-disaster-assistance/index
+orig: SAMHSA find help | https://www.samhsa.gov/find-help
+orig: SAMHSA helpline | https://www.samhsa.gov/find-help/national-helpline
+orig: FindTreatment | https://findtreatment.gov/
+orig: FNS contacts | https://www.fns.usda.gov/fns-contacts
+new: SBA disaster assistance | https://www.sba.gov/funding-programs/disaster-assistance
+new: SBA home and property | https://www.sba.gov/funding-programs/disaster-assistance/home-property-disaster-loans
+new: SBA business physical | https://www.sba.gov/funding-programs/disaster-assistance/physical-damage-loans
+new: SBA EIDL | https://www.sba.gov/funding-programs/disaster-assistance/economic-injury-disaster-loans
+new: SBA mitigation | https://www.sba.gov/funding-programs/disaster-assistance/mitigation-assistance
+new: SBA military reservist | https://www.sba.gov/funding-programs/disaster-assistance/military-reservist-economic-injury-loans
+new: FEMA individual assistance | https://www.fema.gov/assistance/individual
+new: FEMA public assistance | https://www.fema.gov/assistance/public
+new: FEMA hazard mitigation | https://www.fema.gov/grants/mitigation
+new: FEMA HMGP | https://www.fema.gov/grants/mitigation/hazard-mitigation
+new: FEMA FMA | https://www.fema.gov/grants/mitigation/flood-mitigation-assistance
+new: FEMA DLS | https://www.fema.gov/assistance/individual/disaster-legal-services
+new: FEMA Region 2 | https://www.fema.gov/about/organization/region-2
+new: NFIP | https://www.floodsmart.gov/
+new: DOL DUA | https://www.dol.gov/agencies/eta/disasterunemploymentassistance
+new: HUD CDBG-DR | https://www.hud.gov/program_offices/comm_planning/cdbg-dr
+new: FSA disaster programs | https://www.fsa.usda.gov/resources/programs/disaster-assistance
+new: FSA ELAP | https://www.fsa.usda.gov/resources/programs/emergency-assistance-livestock-honey-bees-farm-raised-fish-elap
+new: FSA LIP | https://www.fsa.usda.gov/resources/programs/livestock-indemnity-program-lip
+new: FSA ECP | https://www.fsa.usda.gov/resources/programs/emergency-conservation-program-ecp
+new: FSA TAP | https://www.fsa.usda.gov/resources/programs/tree-assistance-program-tap
+new: RMA regional offices | https://www.rma.usda.gov/about-rma/regional-offices
+new: FNS disasters | https://www.fns.usda.gov/disaster
+new: USDA Foods disasters | https://www.fns.usda.gov/usda-foods/disasters
+new: SAMHSA DDH | https://www.samhsa.gov/find-help/helplines/disaster-distress-helpline
+new: 988 | https://988lifeline.org/
+new: LIHEAP federal | https://www.acf.hhs.gov/ocs/programs/liheap
+new: NY HEAP | https://otda.ny.gov/programs/heap/
+new: ACL emergency preparedness | https://acl.gov/emergencypreparedness
+new: NY Alert | https://alert.ny.gov/
+new: NYS DHSES recovery | https://www.dhses.ny.gov/recovery
+new: NYS DFS disaster | https://www.dfs.ny.gov/consumers/disaster_assistance
+new: NY 211 | https://www.211nys.org/
+new: Red Cross NY | https://www.redcross.org/local/new-york.html
+new: Treasury paper check phaseout | https://fiscal.treasury.gov/gpw/
+new: Center for Disaster Philanthropy | https://disasterphilanthropy.org/
+new: NYS HCR disaster | https://hcr.ny.gov/disaster-recovery
+new: NYS Ag & Markets disaster | https://agriculture.ny.gov/disaster-assistance
