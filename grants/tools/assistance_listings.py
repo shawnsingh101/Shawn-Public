@@ -54,35 +54,81 @@ def slim(r):
     return {k: r.get(k) for k in KEEP}
 
 
-def from_api(key):
-    """Free SAM.gov keys allow only a handful of requests per day, so ask for
-    large pages and stop as soon as everything is in."""
-    from datetime import date
-    out, page, pages, size = [], 1, 1, 1000
-    while page <= pages:
-        j, err = api_call(key, publishedDateTo=date.today().isoformat(), pageSize=size, pageNumber=page)
-        if err:
-            print("API error on page", page, err); break
-        data = j.get("assistanceListingsData") or []
-        pages = int(j.get("totalPages") or 1)
-        print(f"page {page}/{pages}: {len(data)} records (pageSize reported {j.get('pageSize')}, total {j.get('totalRecords')})")
-        out.extend(slim(r) for r in data)
-        if not data or len(out) >= int(j.get("totalRecords") or 0):
-            break
-        page += 1
-    return out
+STATE = os.path.join("grants", "data", "_catalog_state.json")
+
+
+def load(path, default):
+    try:
+        return json.load(open(path))
+    except (FileNotFoundError, ValueError):
+        return default
 
 
 def main():
-    rows = from_extract()
-    if not rows and os.environ.get("SAM_API_KEY"):
-        rows = from_api(os.environ["SAM_API_KEY"])
-    if not rows:
-        sys.exit("No assistance listing data could be downloaded (add SAM_API_KEY secret).")
+    """Build up the full catalog a few pages a day (free SAM.gov keys allow 10
+    requests/day), then keep it current with small 'changed since' requests."""
+    from datetime import date
+    key = os.environ.get("SAM_API_KEY")
+    if not key:
+        sys.exit("SAM_API_KEY is not set")
+    budget = int(os.environ.get("SAM_MAX_CALLS", "8"))
+    state = load(STATE, {})
+    catalog = {r["assistanceListingId"]: r for r in load(OUT, []) if r.get("assistanceListingId")}
+    calls = 0
+
+    def fetch(**params):
+        nonlocal calls
+        calls += 1
+        j, err = api_call(key, pageSize=100, **params)
+        if err:
+            print("API error:", err)
+        return j
+
+    if not state.get("complete"):
+        state.setdefault("snapshot_date", date.today().isoformat())
+        done = set(state.get("pages_done", []))
+        total = state.get("total_pages")
+        page = 1
+        while calls < budget:
+            while page in done:
+                page += 1
+            if total and page > total:
+                break
+            j = fetch(publishedDateTo=state["snapshot_date"], pageNumber=page)
+            if not j:
+                break
+            total = state["total_pages"] = int(j.get("totalPages") or 1)
+            state["total_records"] = j.get("totalRecords")
+            for r in j.get("assistanceListingsData") or []:
+                catalog[r["assistanceListingId"]] = slim(r)
+            done.add(page)
+            print(f"page {page}/{total} ok; catalog now {len(catalog)}")
+        state["pages_done"] = sorted(done)
+        if total and len(done) >= total:
+            state["complete"] = True
+            state["last_full"] = state["snapshot_date"]
+            state["changes_since"] = state["snapshot_date"]
+    else:
+        page = 1
+        while calls < budget:
+            j = fetch(publishedDateFrom=state["changes_since"], pageNumber=page)
+            if not j:
+                break
+            rows = j.get("assistanceListingsData") or []
+            for r in rows:
+                catalog[r["assistanceListingId"]] = slim(r)
+            print(f"changes page {page}/{j.get('totalPages')}: {len(rows)} updated listings")
+            if page >= int(j.get("totalPages") or 1):
+                state["changes_since"] = date.today().isoformat()
+                break
+            page += 1
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w") as f:
-        json.dump(rows, f, ensure_ascii=False, separators=(",", ":"))
-    print(f"saved {len(rows)} listings to {OUT}")
+        json.dump(sorted(catalog.values(), key=lambda r: r["assistanceListingId"]), f, ensure_ascii=False, separators=(",", ":"))
+    state["listings"] = len(catalog)
+    state["calls_last_run"] = calls
+    json.dump(state, open(STATE, "w"), indent=1)
+    print(json.dumps({k: v for k, v in state.items() if k != "pages_done"}))
 
 
 if __name__ == "__main__":
