@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
-# Probe which grant-guide sources are reachable from a runner. One honest request each.
+# Probe 2: grants page structure + the linked guide PDFs (one polite request each).
 UA="gillibrand-tracker/0.1 (+https://github.com/shawnsingh101/Shawn-Public)"
-B=https://www.gillibrand.senate.gov
-echo "== grants page =="; curl -sS -A "$UA" -o g.html -w "%{http_code} %{size_download}B\n" $B/help/grants/
-echo "== page sitemap entries mentioning grant/funding =="
-curl -sS -A "$UA" $B/page-sitemap.xml | grep -oE '<loc>[^<]+' | sed 's/<loc>//' | grep -iE 'grant|fund|guide|help' 
-echo "== feed mentions of grant guides =="
-curl -sS -A "$UA" "$B/?s=grant+guide&feed=rss2" -o s.xml -w "search feed %{http_code}\n"; grep -oE '<title>[^<]+' s.xml | head -15
-curl -sS -A "$UA" "$B/feed/?s=funding+guide" -o s2.xml -w "feed?s %{http_code}\n"; grep -oE '<title>[^<]+' s2.xml | head -10
-echo "== uploads dir / a PDF =="
-for u in "$B/wp-content/uploads/" "$B/wp-json/wp/v2/media?search=guide&per_page=5"; do curl -sS -A "$UA" -o x -w "$u -> %{http_code}\n" "$u"; head -c 300 x; echo; sleep 2; done
-echo "== grants.gov search2 API =="
-curl -sS -X POST https://api.grants.gov/v1/api/search2 -H 'Content-Type: application/json' -d '{"keyword":"broadband","oppStatuses":"forecasted|posted","rows":3}' | head -c 1500; echo
-echo "== grants.gov fetchOpportunity =="
-curl -sS -X POST https://api.grants.gov/v1/api/fetchOpportunity -H 'Content-Type: application/json' -d '{"opportunityId":289999}' | head -c 600; echo
-echo "== SAM.gov assistance listings (public page + API with DEMO_KEY) =="
-curl -sS -A "$UA" -o /dev/null -w "sam.gov page %{http_code}\n" https://sam.gov/assistance-listings
-curl -sS "https://api.sam.gov/assistance-listings/v1/search?api_key=DEMO_KEY&keyword=broadband&pageSize=2" | head -c 800; echo
-echo "== NYS sources =="
-for u in https://grantsmanagement.ny.gov/ https://data.ny.gov/api/views/metadata/v1?limit=1 https://esd.ny.gov/ https://www.ny.gov/services/find-grants ; do curl -sS -A "$UA" -o /dev/null -w "$u -> %{http_code}\n" "$u"; sleep 1; done
+mkdir -p out/pdfs
+curl -sS -A "$UA" -o out/grants.html https://www.gillibrand.senate.gov/help/grants/
+curl -sS -A "$UA" -o out/grants_.html -w "grants_ %{http_code}\n" https://www.gillibrand.senate.gov/help/grants_/
+python3 - <<'PY'
+import re,html
+s=open('out/grants.html',encoding='utf-8',errors='replace').read()
+m=re.search(r'<main.*?</main>',s,re.S) or re.search(r'<body.*',s,re.S)
+body=m.group(0)
+links=re.findall(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>',body,re.S)
+for h,t in links:
+    t=re.sub(r'<[^>]+>','',t).strip()
+    if t: print("LINK",h,"|",html.unescape(t)[:100])
+txt=re.sub(r'<(script|style).*?</\1>',' ',body,flags=re.S)
+txt=html.unescape(re.sub(r'<[^>]+>','\n',txt))
+txt=re.sub(r'\n\s*\n+','\n',txt)
+print("=== TEXT ===");print(txt[:6000])
+PY
+grep -oE 'href="[^"]+\.pdf"' out/grants.html | sed 's/href="//;s/"$//' | sort -u > out/pdfs.txt
+echo "== PDFs: $(wc -l < out/pdfs.txt)"
+while read u; do sleep 2; curl -sS -A "$UA" -o "out/pdfs/$(basename "$u")" -w "%{http_code} %{size_download}B $u\n" "$u"; done < out/pdfs.txt
