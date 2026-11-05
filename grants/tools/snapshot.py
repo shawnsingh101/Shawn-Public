@@ -58,7 +58,7 @@ def main(src):
         status, final, note = "", url, ""
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,application/pdf,*/*"})
-            with urllib.request.urlopen(req, timeout=45) as r:
+            with urllib.request.urlopen(req, timeout=20) as r:
                 status, final = r.status, r.geturl()
                 body = text_of(r.read(), r.headers.get("Content-Type", ""))
         except urllib.error.HTTPError as e:
