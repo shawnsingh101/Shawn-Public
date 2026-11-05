@@ -48,6 +48,9 @@ def main(src):
     guide = os.path.splitext(os.path.basename(src))[0]
     out = os.path.join("grants", "snapshots", guide)
     os.makedirs(out, exist_ok=True)
+    for old in os.listdir(out):  # start clean so renumbered sources leave no stale copies
+        if old.endswith(".md"):
+            os.remove(os.path.join(out, old))
     rows = []
     lines = [l for l in open(src) if l.strip() and not l.startswith("#")]
     for i, line in enumerate(lines, 1):
