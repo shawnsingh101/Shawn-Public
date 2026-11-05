@@ -1,0 +1,11 @@
+name: grants-probe
+on:
+  push:
+    branches: [claude/gillibrand-legislative-research-1a5u07]
+    paths: [grants/probe/**, .github/workflows/grants-probe.yml]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash grants/probe/probe.sh
