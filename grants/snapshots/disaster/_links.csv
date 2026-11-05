@@ -43,8 +43,8 @@ new: FSA ELAP,https://www.fsa.usda.gov/resources/programs/emergency-assistance-l
 new: FSA LIP,https://www.fsa.usda.gov/resources/programs/livestock-indemnity-program-lip,error,https://www.fsa.usda.gov/resources/programs/livestock-indemnity-program-lip,The read operation timed out
 new: FSA ECP,https://www.fsa.usda.gov/resources/programs/emergency-conservation-program-ecp,error,https://www.fsa.usda.gov/resources/programs/emergency-conservation-program-ecp,The read operation timed out
 new: FSA TAP,https://www.fsa.usda.gov/resources/programs/tree-assistance-program-tap,error,https://www.fsa.usda.gov/resources/programs/tree-assistance-program-tap,The read operation timed out
-new: RMA New York,https://www.rma.usda.gov/rmalocal/new-york,403,https://www.rma.usda.gov/rmalocal/new-york,
-new: RMA Raleigh RO,https://www.rma.usda.gov/rmalocal/raleigh-north-carolina,403,https://www.rma.usda.gov/rmalocal/raleigh-north-carolina,
+new: RMA New York,https://www.rma.usda.gov/rmalocal/new-york,200,https://www.rma.usda.gov/rmalocal/new-york,
+new: RMA Raleigh RO,https://www.rma.usda.gov/rmalocal/raleigh-north-carolina,200,https://www.rma.usda.gov/rmalocal/raleigh-north-carolina,
 new: FNS disasters,https://www.fns.usda.gov/disaster,200,https://www.fna.usda.gov/disaster,
 new: USDA disaster nutrition programs,https://www.fns.usda.gov/fd-disaster/usda-disaster-nutrition-assistance-programs,200,https://www.fna.usda.gov/disaster/nutrition-assistance-programs,
 new: SAMHSA DDH,https://www.samhsa.gov/find-help/helplines/disaster-distress-helpline,200,https://www.samhsa.gov/find-help/helplines/disaster-distress-helpline,
