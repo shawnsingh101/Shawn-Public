@@ -45,33 +45,31 @@ def api_call(key, **params):
         return None, str(e)
 
 
+KEEP = ("assistanceListingId", "title", "popularLongName", "status", "publishedDate", "federalOrganization",
+        "programWebPage", "overview", "financialInformation", "criteriaForApplying", "assistanceApplication",
+        "contacts", "relatedFederalAssistance")
+
+
+def slim(r):
+    return {k: r.get(k) for k in KEEP}
+
+
 def from_api(key):
+    """Free SAM.gov keys allow only a handful of requests per day, so ask for
+    large pages and stop as soon as everything is in."""
     from datetime import date
-    base = {"publishedDateTo": date.today().isoformat()}
-    j, err = api_call(key, **base)
-    if err:
-        print("API base call error:", err); return []
-    print("API keys:", list(j.keys()), "totalPages:", j.get("totalPages"), "totalRecords:", j.get("totalRecords"))
-    first = j.get("assistanceListingsData") or []
-    if first:
-        print("record fields:", list(first[0].keys()))
-    # find the paging parameter that actually changes the page
-    pager = None
-    for cand in ("pageNumber", "page", "offset"):
-        j2, err2 = api_call(key, **base, **{cand: 1})
-        d2 = (j2 or {}).get("assistanceListingsData") or []
-        print(f"paging param {cand}: err={err2} first={(d2[0].get('assistanceListingId') if d2 else None)}")
-        if d2 and first and d2[0] != first[0]:
-            pager = cand; break
-    out = list(first)
-    pages = int(j.get("totalPages") or 1)
-    if pager:
-        for n in range(1, pages):
-            jn, errn = api_call(key, **base, **{pager: n})
-            if errn:
-                print("page", n, errn); break
-            out.extend(jn.get("assistanceListingsData") or [])
-    print("downloaded", len(out), "listings via API")
+    out, page, pages, size = [], 1, 1, 1000
+    while page <= pages:
+        j, err = api_call(key, publishedDateTo=date.today().isoformat(), pageSize=size, pageNumber=page)
+        if err:
+            print("API error on page", page, err); break
+        data = j.get("assistanceListingsData") or []
+        pages = int(j.get("totalPages") or 1)
+        print(f"page {page}/{pages}: {len(data)} records (pageSize reported {j.get('pageSize')}, total {j.get('totalRecords')})")
+        out.extend(slim(r) for r in data)
+        if not data or len(out) >= int(j.get("totalRecords") or 0):
+            break
+        page += 1
     return out
 
 
