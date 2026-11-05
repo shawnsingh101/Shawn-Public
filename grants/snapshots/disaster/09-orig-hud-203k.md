@@ -44,10 +44,10 @@ Data.hud.gov
 Reports 
 Gold Standard Science 
 News About Contact 
- Search housing eligibility 
+ How can we help? Search housing eligibility 
  Ask HUD anything 
  Search housing eligibility Search for Section 8 housing Search income limits in my area 
- Search housing eligibility 
+ How can we help? Search housing eligibility 
 U.S. Department of Housing and Urban Development
 Helping Americans 
 HUD Partners 

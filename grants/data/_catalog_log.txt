@@ -1,0 +1,4 @@
+extract https://sam.gov/api/prod/fileextractservices/v1/api/download/Assistanc… -> 204, 0 rows; columns: []
+extract https://s3.amazonaws.com/falextracts/Assistance%20Listings/AssistanceL… failed: HTTP Error 403: Forbidden
+API error: HTTP Error 400: Bad Request
+No assistance listing data could be downloaded (add SAM_API_KEY secret).
