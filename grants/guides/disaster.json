@@ -1,0 +1,787 @@
+{
+ "template": "disaster-2023-template.docx",
+ "file_name": "Disaster Relief Funding Guide 2026 - DRAFT",
+ "title_lines": [
+  "A Guide to Disaster Relief",
+  "Funding Opportunities"
+ ],
+ "year": "2026",
+ "checked": "Nov. 5, 2026",
+ "front": [
+  {
+   "type": "h1",
+   "text": "Introduction"
+  },
+  {
+   "type": "p",
+   "text": "Dear Fellow New Yorker,"
+  },
+  {
+   "type": "p",
+   "text": "Recovering from a disaster is usually a gradual process. Safety is the first priority, along with your mental and physical well-being. Help is available, and knowing how to reach it makes recovery faster and less stressful. As your Senator, your and your family’s safety and well-being are top of mind, which is why I have put together this guide to disaster response and recovery resources for New Yorkers."
+  },
+  {
+   "type": "p",
+   "text": "This guide lists federal, New York State, and other resources for individuals and families, businesses and nonprofits, farmers, and communities. It is a starting point, not a complete list, and programs change, so please confirm details with the agency before you apply. Each entry includes a link to the official program page."
+  },
+  {
+   "type": "p",
+   "text": "If you need help with a federal agency, my office may be able to assist. Visit [gillibrand.senate.gov](https://www.gillibrand.senate.gov/help/help-for-new-yorkers/) or call my Washington, D.C. office at (202) 224-4451. As you move forward with any grant opportunities, please contact Anita Sagar on my staff at [grants@gillibrand.senate.gov](mailto:grants@gillibrand.senate.gov) about letters of support, when applicable."
+  },
+  {
+   "type": "p",
+   "text": "Sincerely,"
+  },
+  {
+   "type": "p",
+   "text": "Kirsten Gillibrand"
+  },
+  {
+   "type": "p",
+   "text": "United States Senator"
+  },
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "h1",
+   "text": "Response and Recovery: Understanding the Next Steps of a Disaster"
+  },
+  {
+   "type": "p",
+   "text": "When a disaster is declared, the federal government, led by the Federal Emergency Management Agency (FEMA), responds at the request of, and in support of, states, Tribes, territories, and local governments. Some federal help, such as FEMA assistance for individuals, is only available after the President declares a major disaster for your county. Other help, such as crop insurance, flood insurance, and some USDA programs, does not require a declaration."
+  },
+  {
+   "type": "p",
+   "text": "Recovery often begins while emergency response is still under way. In New York, the State Division of Homeland Security and Emergency Services (DHSES) coordinates with FEMA and runs four recovery program areas: Public Assistance, Individual Assistance, Hazard Mitigation, and Disaster Finance."
+  },
+  {
+   "type": "h1",
+   "text": "Key Numbers to Keep Handy"
+  },
+  {
+   "type": "bullets",
+   "items": [
+    "**Apply for FEMA assistance:** [DisasterAssistance.gov](https://www.disasterassistance.gov/) or the FEMA Helpline, 1-800-621-3362 (7 a.m. to 10 p.m., 7 days a week)",
+    "**Local help in New York:** call 211 (outside New York City) or 311 (in New York City)",
+    "**SBA disaster loans:** 1-800-659-2955 or [disastercustomerservice@sba.gov](mailto:disastercustomerservice@sba.gov); TTY users dial 7-1-1",
+    "**Free emergency alerts:** [NY-Alert](https://alert.ny.gov/)",
+    "**Flood insurance claims (NFIP):** 1-877-336-2627",
+    "**Emotional distress after a disaster:** call or text the Disaster Distress Helpline, 1-800-985-5990, or call or text 988"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "title": "Help for Individuals and Families",
+   "entries": [
+    {
+     "title": "FEMA Individual Assistance (DisasterAssistance.gov)",
+     "status": "Updated",
+     "changes": "Merged the old 'Disaster Assistance Improvement Program' and 'FEMA' entries into one practical 'how to apply' entry. Fixed the link, which pointed to a staffer's private SharePoint folder. Added hours, application status, and the late-application note from DisasterAssistance.gov.",
+     "verify": "FEMA.gov blocks automated access, so the FEMA Region 2 email (FEMA-R2-ExternalAffairs@fema.dhs.gov) was dropped; re-add it if staff confirm it is still current.",
+     "sources": [
+      "https://www.disasterassistance.gov/ (snapshot 01)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "After a presidentially declared disaster that includes Individual Assistance, FEMA can help eligible people with needs not covered by insurance, such as temporary housing and home repairs. DisasterAssistance.gov is the federal government’s single place to apply for FEMA assistance, check the status of an application, upload documents, and find other recovery help."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Check whether your county is included in a declaration and apply online at [DisasterAssistance.gov](https://www.disasterassistance.gov/).",
+        "Each disaster has an application deadline; disasters with past dates may still accept late applications.",
+        "If you need help completing your application, call the FEMA Helpline at 1-800-621-3362, 7 a.m. to 10 p.m. (your time zone), 7 days a week. If you use a video relay service or captioned telephone, give FEMA the number for that service."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "SBA Home and Personal Property Disaster Loans",
+     "status": "Updated",
+     "changes": "Corrected the contact number: the old guide listed FEMA's helpline (800-621-3362) for this SBA loan; SBA's disaster line is 800-659-2955. Added the separate personal property loan for renters and homeowners.",
+     "verify": "Loan limits ($500,000 home / $100,000 personal property) come from a June 2026 Congressional Research Service report; SBA's own page loads its details by script and could not be saved. Confirm on sba.gov/disaster or the SAM.gov listing (59.008) once the catalog download finishes.",
+     "sources": [
+      "https://www.sba.gov/about-sba/sba-locations/headquarters/office-of-disaster-recovery/ (snapshot 03)",
+      "CRS Report R47245, June 22, 2026 (via search)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The U.S. Small Business Administration (SBA) offers low-interest, long-term disaster loans to homeowners and renters in declared disaster areas. You do not need to own a business."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "**Home loans:** homeowners may borrow up to $500,000 to repair or replace their primary residence.",
+        "**Personal property loans:** homeowners and renters may borrow up to $100,000 to repair or replace personal property such as clothing, furniture, cars, and appliances.",
+        "Insurance and other recovery payments may be deducted from the eligible loan amount. Second homes and vacation properties are not eligible.",
+        "Loans may be increased to pay for improvements that reduce future damage, such as retaining walls, sump pumps, and safe rooms."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [SBA Disaster Assistance](https://www.sba.gov/disaster/)."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** 1-800-659-2955 or [disastercustomerservice@sba.gov](mailto:disastercustomerservice@sba.gov). TTY users dial 7-1-1."
+      }
+     ]
+    },
+    {
+     "title": "203(h) Mortgage Insurance for Disaster Victims and 203(k) Rehabilitation Mortgage Insurance",
+     "status": "Updated",
+     "changes": "Checked against current HUD pages. Added: no down payment required under 203(h); application must be made within one year of the disaster declaration; 203(h) applies through FHA-approved lenders. Removed the unverified '$35,000 Limited 203(k)' figure.",
+     "verify": "HUD phone numbers (1-800-CALL-FHA, Answers@hud.gov) kept from the 2023 guide; not shown on the saved HUD pages.",
+     "sources": [
+      "https://www.hud.gov/program_offices/housing/sfh/ins/203h-dft (snapshot 08)",
+      "https://www.hud.gov/program_offices/housing/sfh/203k/203k--df (snapshot 09)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "**Section 203(h) Mortgage Insurance for Disaster Victims** helps people whose homes were destroyed or severely damaged in a presidentially declared disaster area get a mortgage to rebuild or buy another home. No down payment is required, and the borrower may finance 100 percent of the home. You must apply through an FHA-approved lender within one year of the disaster declaration."
+      },
+      {
+       "type": "p",
+       "text": "**Section 203(k) Rehabilitation Mortgage Insurance** lets you buy or refinance a home that is at least a year old and finance the cost of repairing it in a single mortgage. For repairs that do not require buying or refinancing, HUD’s Title I Property Improvement Loan Program may be an option."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [Section 203(h)](https://www.hud.gov/program_offices/housing/sfh/ins/203h-dft) and [Section 203(k)](https://www.hud.gov/program_offices/housing/sfh/203k/203k--df)."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** 1-800-CALL-FHA (1-800-225-5342), TTY 1-800-877-8339, [Answers@hud.gov](mailto:Answers@hud.gov)"
+      }
+     ]
+    },
+    {
+     "title": "Disaster Unemployment Assistance",
+     "status": "New",
+     "changes": "New entry: helps workers and self-employed people who lose work because of a declared disaster and do not qualify for regular unemployment insurance.",
+     "verify": "",
+     "sources": [
+      "https://www.dol.gov/general/disasterrecovery (snapshot 36)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Disaster Unemployment Assistance provides financial help to people whose job or self-employment was lost or interrupted as a direct result of a major disaster declared by the President, and who are not eligible for regular unemployment insurance. Apply through the New York State Department of Labor after a declaration."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit the U.S. Department of Labor’s [Disaster Recovery Assistance](https://www.dol.gov/general/disasterrecovery) page, or call 1-866-487-2365."
+      }
+     ]
+    },
+    {
+     "title": "Disaster Supplemental Nutrition Assistance Program (D-SNAP) and Disaster Food Help",
+     "status": "Updated",
+     "changes": "Combined D-SNAP and 'USDA Foods Disaster Household Distribution' into one entry. USDA's food agency now appears as the 'Food and Nutrition Administration' (fna.usda.gov); links updated. Added replacement of lost SNAP benefits and the hot-foods waiver. Noted the 2024 rule that lets families get both D-SNAP and a USDA Foods box.",
+     "verify": "Confirm the agency's new name (Food and Nutrition Administration) is official before printing; the website now uses it.",
+     "sources": [
+      "https://www.fna.usda.gov/disaster (snapshot 15)",
+      "FNS 'Improving Access and Parity' final rule, Oct. 2024 (via search)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "After a disaster, USDA works with the State to provide food assistance:"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "**D-SNAP:** if stores are open in the affected area, the State may run a Disaster Supplemental Nutrition Assistance Program. D-SNAP uses different rules than regular SNAP, so households that would not normally qualify may be eligible because of disaster-related expenses such as home repairs, temporary shelter, evacuation, or lost income. Benefits are loaded on an EBT card.",
+        "**Current SNAP households** may be able to get replacement benefits for food lost in the disaster, and in some declared disasters may be allowed to buy hot, prepared foods for a period of time.",
+        "**USDA Foods Disaster Household Distribution:** when normal food channels are disrupted, the State may distribute boxes of USDA Foods, usually for two weeks to one month. Families may receive both D-SNAP and a USDA Foods box."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [USDA Disaster Assistance](https://www.fna.usda.gov/disaster)."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** New York State SNAP Hotline, 1-800-342-3009"
+      }
+     ]
+    },
+    {
+     "title": "Home Energy Assistance (HEAP / LIHEAP)",
+     "status": "Updated",
+     "changes": "Renamed to show New York's program name (HEAP), which is how New Yorkers apply for federal LIHEAP funds.",
+     "verify": "The New York OTDA HEAP page and the federal LIHEAP page could not be saved automatically; confirm the link and any emergency-benefit details.",
+     "sources": [
+      "2023 guide text"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The federal Low Income Home Energy Assistance Program (LIHEAP) helps low-income households with home heating and cooling bills, energy crises, and weatherization and minor energy-related repairs. In New York, it is run by the Office of Temporary and Disability Assistance as the Home Energy Assistance Program (HEAP), which includes emergency benefits for households facing a heating emergency."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [NYS HEAP](https://otda.ny.gov/programs/heap/) or contact your local Department of Social Services."
+      }
+     ]
+    },
+    {
+     "title": "Insurance Help: Flood Insurance and New York State Insurance Assistance",
+     "status": "New",
+     "changes": "New entry. Most homeowners policies do not cover flooding; added NFIP claims line and the NYS Department of Financial Services insurance help.",
+     "verify": "DFS Disaster Hotline (800-339-1759) was found in DFS press releases via search, not on the saved DFS page; confirm before printing.",
+     "sources": [
+      "https://www.floodsmart.gov/ (snapshot 35)",
+      "https://www.dfs.ny.gov/consumers/disaster_flood (snapshot 54)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Most homeowners and renters insurance does not cover flood damage. Flood insurance is available separately through FEMA’s National Flood Insurance Program (NFIP) for homeowners, renters, and businesses."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Report a flood loss right away to your insurance agent or company. Need help finding them? Call the NFIP at 1-877-336-2627 or visit [FloodSmart.gov](https://www.floodsmart.gov/).",
+        "The New York State Department of Financial Services (DFS) can answer questions about coverage and claims and accepts complaints about insurers. Visit [DFS Disaster and Flood Recovery](https://www.dfs.ny.gov/consumers/disaster_flood) or call the DFS Disaster Hotline at 1-800-339-1759.",
+        "Before a disaster, keep photos or video of your home and belongings and a copy of your policy in a safe, dry place."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Disaster Legal Services",
+     "status": "Kept",
+     "changes": "Text kept from 2023 guide.",
+     "verify": "FEMA.gov blocks automated access; confirm the program description is unchanged.",
+     "sources": [
+      "2023 guide text"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Disaster Legal Services (DLS) provides free legal help to low-income disaster survivors. FEMA provides this service through an agreement with the Young Lawyers Division of the American Bar Association. DLS may help with insurance claims, replacing wills and other legal papers lost in the disaster, home repair contracts and contractors, problems with landlords, proof of home ownership, and FEMA appeals. DLS attorneys are not FEMA employees, and their services are confidential."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** FEMA Helpline, 1-800-621-3362"
+      }
+     ]
+    },
+    {
+     "title": "Federal Benefit Payments: Switch from Paper Checks",
+     "status": "Updated",
+     "changes": "Updated for the federal phase-out of paper checks (Sept. 30, 2025). Direct Express is now issued by Fifth Third Bank. New phone numbers from Treasury.",
+     "verify": "",
+     "sources": [
+      "https://fiscal.treasury.gov/about-us/news/paper-checks-going-away (snapshot 58)",
+      "https://godirect.gov/gpw/faq/ (snapshot 59)",
+      "https://www.usdirectexpress.com/ (snapshot 13)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Since September 30, 2025, the federal government has stopped issuing paper checks for most federal payments, including Social Security and veterans benefits, except in very limited circumstances. Electronic payments are safer during a disaster because they do not depend on mail delivery."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "**Direct deposit:** sign up through the agency that pays your benefits, at [GoDirect.gov](https://godirect.gov/gpw/), or by calling the Electronic Payment Solution Center at 1-800-967-6857 (Monday to Friday, 9 a.m. to 7 p.m. ET).",
+        "**Direct Express® Debit Mastercard®:** a prepaid card for people without a bank account. Cards are now issued by Fifth Third Bank. Visit [USDirectExpress.com](https://www.usdirectexpress.com/)."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Mental Health Support After a Disaster",
+     "status": "Updated",
+     "changes": "Shortened; updated SAMHSA links (helpline page moved).",
+     "verify": "",
+     "sources": [
+      "https://www.samhsa.gov/find-help/helplines/disaster-distress-helpline (snapshot 46)",
+      "https://988lifeline.org/ (snapshot 47)"
+     ],
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**Disaster Distress Helpline:** call or text 1-800-985-5990 to talk with a trained counselor, 24 hours a day, 7 days a week.",
+        "**988 Suicide & Crisis Lifeline:** call, text, or chat 988, 24/7. Free and confidential.",
+        "**SAMHSA National Helpline:** 1-800-662-HELP (4357), free, confidential treatment referral, in English and Spanish.",
+        "**Find treatment:** [FindTreatment.gov](https://findtreatment.gov/)"
+       ]
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [SAMHSA: Find Help](https://www.samhsa.gov/find-help)."
+      }
+     ]
+    },
+    {
+     "title": "Disaster Resources for Older Adults and People with Disabilities",
+     "status": "Updated",
+     "changes": "Link now goes to ACL's emergency preparedness page instead of its general programs page.",
+     "verify": "",
+     "sources": [
+      "https://acl.gov/emergencypreparedness (snapshot 51)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The Administration for Community Living (ACL) offers resources to help older adults, people with disabilities, families, caregivers, and service providers prepare for and respond to emergencies."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [ACL Emergency Preparedness](https://acl.gov/emergencypreparedness)."
+      }
+     ]
+    },
+    {
+     "title": "Bureau of Indian Affairs Financial Assistance and Social Services (FASS)",
+     "status": "Updated",
+     "changes": "Added the current maximum payment amounts for Emergency Assistance ($1,500) and Burial Assistance ($3,500), effective June 28, 2024.",
+     "verify": "BIA phone numbers kept from the 2023 guide; not shown on the saved page.",
+     "sources": [
+      "https://www.bia.gov/bia/ois/dhs/financial-assistance (snapshot 10)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The Bureau of Indian Affairs offers financial assistance to American Indians and Alaska Natives who do not have access to TANF, do not qualify for TANF, or have used up their TANF lifetime limit. Help is secondary to other resources. Types of assistance include General Assistance, Child Assistance, Non-Medical Institutional or Custodial Care of Adults, Burial Assistance (up to $3,500), and **Emergency Assistance** (up to $1,500) for people whose homes were damaged or destroyed by fire, flood, or other disasters, to cover food, shelter, and utilities."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [BIA Financial Assistance](https://www.bia.gov/bia/ois/dhs/financial-assistance)."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** (202) 513-7642 or (202) 513-7622"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Help for Businesses and Nonprofits",
+   "entries": [
+    {
+     "title": "SBA Disaster Loans for Businesses and Nonprofits",
+     "status": "Updated",
+     "changes": "Merged the old 'SBA Office of Disaster Recovery and Resilience', 'SBA ... Disaster Loans' and 'Business Disaster Loans' entries, which repeated each other. Fixed the description of mitigation assistance (the old guide described it as covering operating expenses, which is wrong). Office renamed 'Office of Disaster Recovery'.",
+     "verify": "Loan limits ($2 million) come from a June 2026 CRS report; confirm on sba.gov/disaster or SAM.gov listing 59.008.",
+     "sources": [
+      "https://www.sba.gov/about-sba/sba-locations/headquarters/office-of-disaster-recovery/ (snapshot 03)",
+      "CRS Report R47245, June 22, 2026 (via search)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The SBA’s Office of Disaster Recovery provides low-interest disaster loans to businesses of all sizes and private nonprofit organizations in declared disaster areas."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "**Business Physical Disaster Loans:** up to $2 million to repair or replace damaged real estate, machinery and equipment, inventory, and other business assets.",
+        "**Economic Injury Disaster Loans (EIDL):** working capital for small businesses, small agricultural cooperatives, small aquaculture businesses, and most private nonprofits that suffered economic injury, even without property damage. The $2 million limit is shared with physical disaster loans.",
+        "**Mitigation:** borrowers may increase an approved physical damage loan to pay for improvements that reduce the risk of future damage.",
+        "**Military Reservist Economic Injury Loans:** help small businesses meet operating expenses when an essential employee is called to active duty."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [SBA Disaster Assistance](https://www.sba.gov/disaster/)."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** 1-800-659-2955 or [disastercustomerservice@sba.gov](mailto:disastercustomerservice@sba.gov). TTY users dial 7-1-1."
+      }
+     ]
+    },
+    {
+     "title": "USDA Business and Industry Loan Guarantees",
+     "status": "Kept",
+     "changes": "Text kept from 2023 guide.",
+     "verify": "USDA Rural Development's website blocks automated access; confirm the population limit and contact number.",
+     "sources": [
+      "2023 guide text"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The Business & Industry (B&I) Guaranteed Loan Program guarantees loans made by private lenders to businesses in rural areas, so lenders can extend more credit. Eligible areas are generally outside cities and towns with more than 50,000 people. Lenders may request a guarantee for loans to for-profit businesses, nonprofits and cooperatives, federally recognized Tribes, public bodies, and individuals."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [USDA B&I Loan Guarantees](https://www.rd.usda.gov/programs-services/business-programs/business-industry-loan-guarantees)."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** (202) 720-2600"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Help for Farmers and Agricultural Producers",
+   "entries": [
+    {
+     "title": "USDA Disaster Assistance for Farmers",
+     "status": "Updated",
+     "changes": "Replaced 'Disaster Resource Center' entry with farmers.gov's current Protection and Recovery page (old link redirected). Explains where to apply.",
+     "verify": "",
+     "sources": [
+      "https://www.farmers.gov/protection-recovery (snapshot 05)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "USDA’s Farm Service Agency, Natural Resources Conservation Service, and Risk Management Agency offer programs to help producers prepare for and recover from natural disasters. Crop insurance is purchased through a private crop insurance agent; for other programs, contact your local USDA Service Center."
+      },
+      {
+       "type": "p",
+       "text": "Visit [farmers.gov Protection and Recovery](https://www.farmers.gov/protection-recovery) to find programs that fit your situation, and [sign up for USDA disaster email updates](https://public.govdelivery.com/accounts/USDAFARMERS/subscriber/new?topic_id=USDAFARMERS_21)."
+      }
+     ]
+    },
+    {
+     "title": "Crop Insurance",
+     "status": "Updated",
+     "changes": "New York is served by RMA's Raleigh Regional Office; the regional director named in 2023 (Alexander Sereno) may no longer be correct, so a general contact is used. Added the Agent Locator.",
+     "verify": "RMA's Raleigh office page lists a current director; confirm name before adding it back.",
+     "sources": [
+      "https://www.rma.usda.gov/rmalocal/new-york (snapshot 43)",
+      "https://www.rma.usda.gov/rmalocal/raleigh-north-carolina (snapshot 44)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Federal crop insurance protects agricultural producers against crop and revenue losses from natural causes. It is administered by USDA’s Risk Management Agency (RMA) and sold only through private crop insurance agents. To be covered, you must buy a policy for your crop by the sales closing date in your county."
+      },
+      {
+       "type": "p",
+       "text": "Find an agent with the [RMA Agent Locator](https://www.rma.usda.gov/) or learn more at [RMA New York](https://www.rma.usda.gov/rmalocal/new-york)."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** RMA Raleigh Regional Office (serves New York), (919) 875-4880, [rsonc@usda.gov](mailto:rsonc@usda.gov)"
+      }
+     ]
+    },
+    {
+     "title": "Noninsured Crop Disaster Assistance Program (NAP)",
+     "status": "Kept",
+     "changes": "Text kept; added the requirement to enroll before the loss.",
+     "verify": "FSA's website did not respond to automated requests; confirm the $900,000 income limit and the Syracuse phone number (315-477-6300).",
+     "sources": [
+      "https://www.farmers.gov/protection-recovery (snapshot 05)",
+      "2023 guide text"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "USDA’s Farm Service Agency (FSA) Noninsured Crop Disaster Assistance Program (NAP) pays producers of crops not covered by federal crop insurance for low yields, loss of inventory, or prevented planting caused by natural disasters. You must enroll and buy NAP coverage for the crop year before the loss occurs. Landowners, tenants, and sharecroppers who share in the risk of producing an eligible crop may qualify; average adjusted gross income may not exceed $900,000."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [farmers.gov](https://www.farmers.gov/protection-recovery) or contact your local USDA Service Center."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** FSA New York State Office, (315) 477-6300"
+      }
+     ]
+    },
+    {
+     "title": "Emergency Farm Loans",
+     "status": "Kept",
+     "changes": "Text kept from 2023 guide.",
+     "verify": "FSA's website did not respond to automated requests; confirm the $500,000 maximum and 30% loss threshold.",
+     "sources": [
+      "2023 guide text"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "FSA’s Emergency Loan Program helps eligible farmers and ranchers recover from production and physical losses caused by natural disasters such as floods, tornadoes, and drought, or by a quarantine imposed by the Secretary of Agriculture, in counties designated by USDA. Funds may be used to restore or replace essential property, pay production costs for the disaster year, pay essential family living expenses, reorganize the farming operation, and refinance certain debts. Producers may borrow up to 100 percent of actual losses, up to $500,000; production losses must exceed 30 percent."
+      },
+      {
+       "type": "p",
+       "text": "For more information, contact your local USDA Service Center or visit [farmers.gov](https://www.farmers.gov/protection-recovery)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Help for Communities, Local Governments, and Tribes",
+   "intro": [
+    {
+     "type": "p",
+     "text": "These programs fund recovery and rebuilding by counties, cities, towns, villages, Tribes, and certain nonprofits. In New York, most FEMA community programs are applied for through the State Division of Homeland Security and Emergency Services."
+    }
+   ],
+   "entries": [
+    {
+     "title": "FEMA Public Assistance and Hazard Mitigation (through NYS DHSES)",
+     "status": "New",
+     "changes": "New entry for local governments, using the NYS DHSES Recovery page.",
+     "verify": "FEMA.gov blocks automated access. Program details (and the current status of FEMA's mitigation grant programs, which changed in 2025) will be filled in from the SAM.gov listings (97.036, 97.039, 97.029) once the catalog download finishes.",
+     "sources": [
+      "https://www.dhses.ny.gov/disaster-recovery (snapshot 53)"
+     ],
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**Public Assistance** reimburses governments and certain private nonprofits for disaster response costs and for permanent repairs to public infrastructure.",
+        "**Hazard Mitigation** helps communities plan and carry out long-term projects that reduce future disaster damage to roads, bridges, and buildings. A FEMA-approved hazard mitigation plan is required to receive mitigation funding."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [NYS DHSES Disaster Recovery](https://www.dhses.ny.gov/disaster-recovery)."
+      }
+     ]
+    },
+    {
+     "title": "HUD Community Development Block Grant – Disaster Recovery (CDBG-DR)",
+     "status": "New",
+     "changes": "New entry.",
+     "verify": "HUD's CDBG-DR page could not be fully saved; confirm wording.",
+     "sources": [
+      "https://www.hud.gov/program_offices/comm_planning/cdbg-dr (snapshot 37, partial)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "When Congress appropriates special funding after major disasters, HUD awards Community Development Block Grant – Disaster Recovery (CDBG-DR) grants to states and local governments to help rebuild housing, infrastructure, and local economies, especially in low- and moderate-income areas. Residents usually apply through the State or local program that receives the grant."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [HUD CDBG-DR](https://www.hud.gov/program_offices/comm_planning/cdbg-dr)."
+      }
+     ]
+    },
+    {
+     "title": "Dislocated Worker Grants for Disaster Cleanup",
+     "status": "New",
+     "changes": "New entry.",
+     "verify": "",
+     "sources": [
+      "https://www.dol.gov/general/disasterrecovery (snapshot 36)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "States affected by disasters can apply to the U.S. Department of Labor for Dislocated Worker Grants, which can create temporary jobs to help with cleanup and recovery."
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [DOL Disaster Recovery Assistance](https://www.dol.gov/general/disasterrecovery)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "New York State and Local Resources",
+   "entries": [
+    {
+     "title": "New York State Office of Emergency Management",
+     "status": "Updated",
+     "changes": "Fixed link (pointed to a staffer's private SharePoint folder). Added 211/311 for local help.",
+     "verify": "DHSES email (DHSESPIO@dhses.ny.gov) and phone (518-242-5000) kept from 2023; confirm.",
+     "sources": [
+      "https://www.dhses.ny.gov/oem (snapshot 02)",
+      "https://www.dhses.ny.gov/individual-assistance (snapshot 55)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The New York State Office of Emergency Management (OEM), part of the Division of Homeland Security and Emergency Services (DHSES), coordinates the activities of all State agencies to protect New York’s communities from natural and human-caused disasters. It supports local governments, voluntary organizations, and private industry with planning, response, technical support, and disaster recovery assistance."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "To learn about available resources after a disaster, call 211 (outside New York City) or 311 (in New York City).",
+        "Sign up for free emergency alerts by phone, email, or text at [NY-Alert](https://alert.ny.gov/)."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "For more information, visit [NYS Office of Emergency Management](https://www.dhses.ny.gov/oem)."
+      },
+      {
+       "type": "p",
+       "text": "**Contact:** [DHSESPIO@dhses.ny.gov](mailto:DHSESPIO@dhses.ny.gov), (518) 242-5000"
+      }
+     ]
+    },
+    {
+     "title": "New York State Homes and Community Renewal Disaster Repair Programs",
+     "status": "New",
+     "changes": "New entry: HCR has offered emergency home-repair grants of up to $50,000 after specific storms. These open and close with each event, so the entry points readers to check for current programs.",
+     "verify": "No HCR disaster program appears to be open right now; check before printing.",
+     "sources": [
+      "https://hcr.ny.gov/ahc-flood-assistance-program (snapshot 61, 2023 program)",
+      "https://resilient.ny.gov/recovery-resources (snapshot 56)"
+     ],
+     "blocks": [
+      {
+       "type": "p",
+       "text": "After some major storms, New York State Homes and Community Renewal (HCR) has opened emergency repair programs, through local nonprofit partners, that help homeowners make primary residences safe and livable when insurance and other aid fall short. Past programs offered grants of up to $50,000 based on income. These programs are announced after specific disasters."
+      },
+      {
+       "type": "p",
+       "text": "Check [Resilient NY Recovery Resources](https://resilient.ny.gov/recovery-resources) for current State recovery programs."
+      }
+     ]
+    },
+    {
+     "title": "Private and Philanthropic Disaster Funding",
+     "status": "New",
+     "changes": "New entry so the guide covers non-government funding, as the website's grants page promises.",
+     "verify": "American Red Cross pages block automated access; Red Cross line (1-800-RED-CROSS) is widely published but confirm.",
+     "sources": [
+      "https://disasterphilanthropy.org/ (snapshot 60)",
+      "https://www.disasterassistance.gov/ (snapshot 01, Red Cross shelter link)"
+     ],
+     "blocks": [
+      {
+       "type": "bullets",
+       "items": [
+        "**American Red Cross:** emergency shelter, food, and other immediate help. Find an open shelter through [DisasterAssistance.gov](https://www.disasterassistance.gov/) or call 1-800-RED-CROSS (1-800-733-2767).",
+        "**Center for Disaster Philanthropy:** information on how foundations and donors fund long-term disaster recovery, at [DisasterPhilanthropy.org](https://disasterphilanthropy.org/).",
+        "Local community foundations and United Way chapters often open disaster funds after a major event; call 211 to find them."
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "back": [
+  {
+   "type": "pagebreak"
+  },
+  {
+   "type": "h1",
+   "text": "Letters of Support from Senator Gillibrand"
+  },
+  {
+   "type": "p",
+   "text": "While Senator Gillibrand does NOT decide which organizations are awarded grants, there are instances in which it is appropriate for Senator Gillibrand to write a letter of support for an application. If you wish to request a letter of support, please send the following to [grants@gillibrand.senate.gov](mailto:grants@gillibrand.senate.gov):"
+  },
+  {
+   "type": "bullets",
+   "items": [
+    "A description of your organization",
+    "A summary of the application",
+    "A description of what the money will be used for",
+    "A draft letter of support"
+   ]
+  },
+  {
+   "type": "h1",
+   "text": "Senator Gillibrand’s Offices"
+  },
+  {
+   "type": "offices",
+   "offices": [
+    {
+     "name": "Washington, D.C.",
+     "lines": [
+      "478 Russell Senate Office Building",
+      "Washington, DC 20510",
+      "Tel. (202) 224-4451"
+     ]
+    },
+    {
+     "name": "New York City",
+     "lines": [
+      "885 Third Avenue, Suite 2402",
+      "New York, NY 10022"
+     ]
+    },
+    {
+     "name": "Albany",
+     "lines": [
+      "Leo W. O’Brien Federal Office Building",
+      "11A Clinton Avenue, Room 821",
+      "Albany, NY 12207"
+     ]
+    },
+    {
+     "name": "Buffalo",
+     "lines": [
+      "Larkin at Exchange",
+      "726 Exchange Street, Suite 511",
+      "Buffalo, NY 14210"
+     ]
+    },
+    {
+     "name": "Long Island",
+     "lines": [
+      "155 Pinelawn Road, Suite 250 North",
+      "Melville, NY 11747"
+     ]
+    },
+    {
+     "name": "Lower Hudson Valley",
+     "lines": [
+      "P.O. Box 749",
+      "Yonkers, NY 10710"
+     ]
+    },
+    {
+     "name": "Rochester",
+     "lines": [
+      "Kenneth B. Keating Federal Office Building",
+      "100 State Street, Room 4195",
+      "Rochester, NY 14614"
+     ]
+    },
+    {
+     "name": "Syracuse",
+     "lines": [
+      "James M. Hanley Federal Building",
+      "100 South Clinton Street, Room 1470",
+      "P.O. Box 7378",
+      "Syracuse, NY 13261"
+     ]
+    }
+   ]
+  }
+ ],
+ "review_extra": [
+  {
+   "title": "Introduction letter",
+   "status": "New",
+   "changes": "Added an introduction letter in the style of the other guides, with Anita Sagar as the grants contact. The 2023 Disaster guide had none.",
+   "verify": "Needs approval: the letter is written in the Senator's voice. No signature image is used."
+  },
+  {
+   "title": "Office addresses",
+   "status": "Updated",
+   "changes": "Replaced the 2023 screenshot of old addresses with the current list (NYC office moved to 885 Third Ave; North Country office removed; Hudson Valley renamed Lower Hudson Valley). Phone numbers removed except D.C., because current regional numbers were not provided.",
+   "verify": "Add regional phone numbers if desired. Committee offices (Aging, Intelligence, Appropriations) were left out as not relevant to grant seekers."
+  },
+  {
+   "title": "Removed: SBA Office of Disaster Recovery and Resilience (separate entry)",
+   "status": "Removed",
+   "changes": "Folded into 'SBA Disaster Loans for Businesses and Nonprofits' and 'SBA Home and Personal Property Disaster Loans' to remove three overlapping SBA entries.",
+   "verify": ""
+  },
+  {
+   "title": "Removed: Disaster Assistance Improvement Program (separate entry)",
+   "status": "Removed",
+   "changes": "Folded into 'FEMA Individual Assistance (DisasterAssistance.gov)'.",
+   "verify": ""
+  }
+ ]
+}
