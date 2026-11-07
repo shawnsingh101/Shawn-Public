@@ -96,7 +96,21 @@
         "If you need help completing your application, call the FEMA Helpline at 1-800-621-3362, 7 a.m. to 10 p.m. (your time zone), 7 days a week. If you use a video relay service or captioned telephone, give FEMA the number for that service."
        ]
       }
-     ]
+     ],
+     "tags": {
+      "agency": "FEMA",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "grant",
+       "services"
+      ],
+      "aln": [
+       "97.050"
+      ]
+     }
     },
     {
      "title": "SBA Home and Personal Property Disaster Loans",
@@ -129,7 +143,23 @@
        "type": "p",
        "text": "**Contact:** 1-800-659-2955 or [disastercustomerservice@sba.gov](mailto:disastercustomerservice@sba.gov). TTY users dial 7-1-1."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "U.S. Small Business Administration",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "loan"
+      ],
+      "aln": [
+       "59.008"
+      ],
+      "topics": [
+       "housing"
+      ]
+     }
     },
     {
      "title": "203(h) Mortgage Insurance for Disaster Victims and 203(k) Rehabilitation Mortgage Insurance",
@@ -157,7 +187,25 @@
        "type": "p",
        "text": "**Contact:** 1-800-CALL-FHA (1-800-225-5342), TTY 1-800-877-8339, [Answers@hud.gov](mailto:Answers@hud.gov)"
       }
-     ]
+     ],
+     "tags": {
+      "agency": "HUD / Federal Housing Administration",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "insurance",
+       "loan"
+      ],
+      "aln": [
+       "14.117",
+       "14.108"
+      ],
+      "topics": [
+       "housing"
+      ]
+     }
     },
     {
      "title": "Disaster Unemployment Assistance",
@@ -176,7 +224,23 @@
        "type": "p",
        "text": "For more information, visit the U.S. Department of Labor’s [Disaster Recovery Assistance](https://www.dol.gov/general/disasterrecovery) page, or call 1-866-487-2365."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "U.S. Department of Labor",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "payment"
+      ],
+      "aln": [
+       "97.034"
+      ],
+      "topics": [
+       "workforce"
+      ]
+     }
     },
     {
      "title": "Disaster Supplemental Nutrition Assistance Program (D-SNAP) and Disaster Food Help",
@@ -208,7 +272,24 @@
        "type": "p",
        "text": "**Contact:** New York State SNAP Hotline, 1-800-342-3009"
       }
-     ]
+     ],
+     "tags": {
+      "agency": "USDA",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "payment",
+       "services"
+      ],
+      "aln": [
+       "10.551"
+      ],
+      "topics": [
+       "nutrition"
+      ]
+     }
     },
     {
      "title": "Home Energy Assistance (HEAP / LIHEAP)",
@@ -227,7 +308,23 @@
        "type": "p",
        "text": "For more information, visit [NYS HEAP](https://otda.ny.gov/programs/heap/) or contact your local Department of Social Services."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "HHS / NYS Office of Temporary and Disability Assistance",
+      "level": "state",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "payment"
+      ],
+      "aln": [
+       "93.568"
+      ],
+      "topics": [
+       "housing"
+      ]
+     }
     },
     {
      "title": "Insurance Help: Flood Insurance and New York State Insurance Assistance",
@@ -251,7 +348,22 @@
         "Before a disaster, keep photos or video of your home and belongings and a copy of your policy in a safe, dry place."
        ]
       }
-     ]
+     ],
+     "tags": {
+      "agency": "FEMA / NYS Department of Financial Services",
+      "level": "federal",
+      "audience": [
+       "individuals",
+       "business"
+      ],
+      "help": [
+       "insurance",
+       "services"
+      ],
+      "aln": [
+       "97.022"
+      ]
+     }
     },
     {
      "title": "Disaster Legal Services",
@@ -270,7 +382,20 @@
        "type": "p",
        "text": "**Contact:** FEMA Helpline, 1-800-621-3362"
       }
-     ]
+     ],
+     "tags": {
+      "agency": "FEMA / American Bar Association",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "services"
+      ],
+      "aln": [
+       "97.033"
+      ]
+     }
     },
     {
      "title": "Federal Benefit Payments: Switch from Paper Checks",
@@ -294,7 +419,17 @@
         "**Direct Express® Debit Mastercard®:** a prepaid card for people without a bank account. Cards are now issued by Fifth Third Bank. Visit [USDirectExpress.com](https://www.usdirectexpress.com/)."
        ]
       }
-     ]
+     ],
+     "tags": {
+      "agency": "U.S. Department of the Treasury",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "services"
+      ]
+     }
     },
     {
      "title": "Mental Health Support After a Disaster",
@@ -319,7 +454,20 @@
        "type": "p",
        "text": "For more information, visit [SAMHSA: Find Help](https://www.samhsa.gov/find-help)."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "SAMHSA",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "services"
+      ],
+      "topics": [
+       "health"
+      ]
+     }
     },
     {
      "title": "Disaster Resources for Older Adults and People with Disabilities",
@@ -338,7 +486,20 @@
        "type": "p",
        "text": "For more information, visit [ACL Emergency Preparedness](https://acl.gov/emergencypreparedness)."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "Administration for Community Living",
+      "level": "federal",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "services"
+      ],
+      "topics": [
+       "health"
+      ]
+     }
     },
     {
      "title": "Bureau of Indian Affairs Financial Assistance and Social Services (FASS)",
@@ -361,7 +522,24 @@
        "type": "p",
        "text": "**Contact:** (202) 513-7642 or (202) 513-7622"
       }
-     ]
+     ],
+     "tags": {
+      "agency": "Bureau of Indian Affairs",
+      "level": "federal",
+      "audience": [
+       "individuals",
+       "tribes"
+      ],
+      "help": [
+       "payment"
+      ],
+      "aln": [
+       "15.113"
+      ],
+      "topics": [
+       "tribal"
+      ]
+     }
     }
    ]
   },
@@ -399,7 +577,24 @@
        "type": "p",
        "text": "**Contact:** 1-800-659-2955 or [disastercustomerservice@sba.gov](mailto:disastercustomerservice@sba.gov). TTY users dial 7-1-1."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "U.S. Small Business Administration",
+      "level": "federal",
+      "audience": [
+       "business",
+       "nonprofits"
+      ],
+      "help": [
+       "loan"
+      ],
+      "aln": [
+       "59.008"
+      ],
+      "topics": [
+       "business"
+      ]
+     }
     },
     {
      "title": "USDA Business and Industry Loan Guarantees",
@@ -422,7 +617,27 @@
        "type": "p",
        "text": "**Contact:** (202) 720-2600"
       }
-     ]
+     ],
+     "tags": {
+      "agency": "USDA Rural Development",
+      "level": "federal",
+      "audience": [
+       "business",
+       "nonprofits",
+       "tribes",
+       "local"
+      ],
+      "help": [
+       "loan"
+      ],
+      "aln": [
+       "10.768"
+      ],
+      "topics": [
+       "rural",
+       "business"
+      ]
+     }
     }
    ]
   },
@@ -446,7 +661,20 @@
        "type": "p",
        "text": "Visit [farmers.gov Protection and Recovery](https://www.farmers.gov/protection-recovery) to find programs that fit your situation, and [sign up for USDA disaster email updates](https://public.govdelivery.com/accounts/USDAFARMERS/subscriber/new?topic_id=USDAFARMERS_21)."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "USDA",
+      "level": "federal",
+      "audience": [
+       "farmers"
+      ],
+      "help": [
+       "services"
+      ],
+      "topics": [
+       "agriculture"
+      ]
+     }
     },
     {
      "title": "Crop Insurance",
@@ -470,7 +698,23 @@
        "type": "p",
        "text": "**Contact:** RMA Raleigh Regional Office (serves New York), (919) 875-4880, [rsonc@usda.gov](mailto:rsonc@usda.gov)"
       }
-     ]
+     ],
+     "tags": {
+      "agency": "USDA Risk Management Agency",
+      "level": "federal",
+      "audience": [
+       "farmers"
+      ],
+      "help": [
+       "insurance"
+      ],
+      "aln": [
+       "10.450"
+      ],
+      "topics": [
+       "agriculture"
+      ]
+     }
     },
     {
      "title": "Noninsured Crop Disaster Assistance Program (NAP)",
@@ -494,7 +738,23 @@
        "type": "p",
        "text": "**Contact:** FSA New York State Office, (315) 477-6300"
       }
-     ]
+     ],
+     "tags": {
+      "agency": "USDA Farm Service Agency",
+      "level": "federal",
+      "audience": [
+       "farmers"
+      ],
+      "help": [
+       "payment"
+      ],
+      "aln": [
+       "10.451"
+      ],
+      "topics": [
+       "agriculture"
+      ]
+     }
     },
     {
      "title": "Emergency Farm Loans",
@@ -513,7 +773,23 @@
        "type": "p",
        "text": "For more information, contact your local USDA Service Center or visit [farmers.gov](https://www.farmers.gov/protection-recovery)."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "USDA Farm Service Agency",
+      "level": "federal",
+      "audience": [
+       "farmers"
+      ],
+      "help": [
+       "loan"
+      ],
+      "aln": [
+       "10.404"
+      ],
+      "topics": [
+       "agriculture"
+      ]
+     }
     },
     {
      "title": "Emergency Conservation Program (ECP)",
@@ -532,7 +808,23 @@
        "type": "p",
        "text": "For more information, contact your local USDA Service Center or visit [farmers.gov](https://www.farmers.gov/protection-recovery)."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "USDA Farm Service Agency",
+      "level": "federal",
+      "audience": [
+       "farmers"
+      ],
+      "help": [
+       "payment"
+      ],
+      "aln": [
+       "10.054"
+      ],
+      "topics": [
+       "agriculture"
+      ]
+     }
     }
    ]
   },
@@ -565,7 +857,25 @@
        "type": "p",
        "text": "For more information, visit [NYS DHSES Disaster Recovery](https://www.dhses.ny.gov/disaster-recovery)."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "FEMA / NYS DHSES",
+      "level": "federal",
+      "audience": [
+       "local",
+       "state",
+       "tribes",
+       "nonprofits"
+      ],
+      "help": [
+       "grant"
+      ],
+      "aln": [
+       "97.036",
+       "97.039",
+       "97.029"
+      ]
+     }
     },
     {
      "title": "HUD Community Development Block Grant – Disaster Recovery (CDBG-DR)",
@@ -584,7 +894,25 @@
        "type": "p",
        "text": "For more information, visit [HUD CDBG-DR](https://www.hud.gov/program_offices/comm_planning/cdbg-dr)."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "HUD",
+      "level": "federal",
+      "audience": [
+       "state",
+       "local"
+      ],
+      "help": [
+       "grant"
+      ],
+      "aln": [
+       "14.228",
+       "14.218"
+      ],
+      "topics": [
+       "housing"
+      ]
+     }
     },
     {
      "title": "Dislocated Worker Grants for Disaster Cleanup",
@@ -603,7 +931,23 @@
        "type": "p",
        "text": "For more information, visit [DOL Disaster Recovery Assistance](https://www.dol.gov/general/disasterrecovery)."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "U.S. Department of Labor",
+      "level": "federal",
+      "audience": [
+       "state"
+      ],
+      "help": [
+       "grant"
+      ],
+      "aln": [
+       "17.277"
+      ],
+      "topics": [
+       "workforce"
+      ]
+     }
     }
    ]
   },
@@ -639,7 +983,18 @@
        "type": "p",
        "text": "**Contact:** [DHSESPIO@dhses.ny.gov](mailto:DHSESPIO@dhses.ny.gov), (518) 242-5000"
       }
-     ]
+     ],
+     "tags": {
+      "agency": "NYS Division of Homeland Security and Emergency Services",
+      "level": "state",
+      "audience": [
+       "individuals",
+       "local"
+      ],
+      "help": [
+       "services"
+      ]
+     }
     },
     {
      "title": "New York State Homes and Community Renewal Disaster Repair Programs",
@@ -659,7 +1014,20 @@
        "type": "p",
        "text": "Check [Resilient NY Recovery Resources](https://resilient.ny.gov/recovery-resources) for current State recovery programs."
       }
-     ]
+     ],
+     "tags": {
+      "agency": "NYS Homes and Community Renewal",
+      "level": "state",
+      "audience": [
+       "individuals"
+      ],
+      "help": [
+       "grant"
+      ],
+      "topics": [
+       "housing"
+      ]
+     }
     },
     {
      "title": "Private and Philanthropic Disaster Funding",
@@ -679,7 +1047,19 @@
         "Local community foundations and United Way chapters often open disaster funds after a major event; call 211 to find them."
        ]
       }
-     ]
+     ],
+     "tags": {
+      "agency": "American Red Cross, Center for Disaster Philanthropy, local foundations",
+      "level": "private",
+      "audience": [
+       "individuals",
+       "nonprofits"
+      ],
+      "help": [
+       "grant",
+       "services"
+      ]
+     }
     }
    ]
   }
@@ -802,5 +1182,7 @@
    "changes": "Folded into 'FEMA Individual Assistance (DisasterAssistance.gov)'.",
    "verify": ""
   }
- ]
+ ],
+ "topic": "disaster",
+ "site_intro": "Help for New Yorkers before, during, and after a disaster: how to apply for FEMA aid, low-interest SBA loans, farm and community recovery programs, and New York State resources."
 }

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New York Funding Finder</title>
+<meta name="description" content="Search federal, New York State, local and private funding and assistance programs, organized by topic.">
+<style>
+:root{
+  --navy:#173f66; --navy-2:#1f4e79; --ink:#1b1f24; --muted:#5b6470; --line:#e3e6ea; --bg:#f6f7f9; --panel:#fff;
+  --accent:#b8860b; --chip:#eef3f9; --chip-ink:#1f4e79; --ok:#1d7a46; --ok-bg:#e6f4ec; --warn:#8a5a00; --warn-bg:#fff4dc;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.08);
+  --serif: "Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e7e9ec; --muted:#a3abb6; --line:#2e343b; --bg:#14171b; --panel:#1c2026; --chip:#22303f; --chip-ink:#a9c7ea;
+  --ok:#6fcf97; --ok-bg:#1d3226; --warn:#f2c265; --warn-bg:#3a2f17; --shadow:none;}}
+:root[data-theme="dark"]{--ink:#e7e9ec; --muted:#a3abb6; --line:#2e343b; --bg:#14171b; --panel:#1c2026; --chip:#22303f; --chip-ink:#a9c7ea; --ok:#6fcf97; --ok-bg:#1d3226; --warn:#f2c265; --warn-bg:#3a2f17; --shadow:none;}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans)}
+a{color:var(--navy-2)} @media (prefers-color-scheme:dark){a{color:#8fb8e6}}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.proto{background:var(--warn-bg);color:var(--warn);font-size:13px;text-align:center;padding:6px 16px}
+header.top{background:var(--navy);color:#fff}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
+.brand{display:flex;flex-direction:column;line-height:1.15}
+.brand b{font-family:var(--serif);font-size:19px;letter-spacing:.2px}
+.brand span{font-size:12.5px;opacity:.8}
+header.top a{color:#fff;font-size:14px;text-decoration:none;opacity:.9}
+.hero{background:linear-gradient(180deg,var(--navy) 0,var(--navy-2) 100%);color:#fff;padding:28px 0 34px}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,38px);margin:0 0 6px;letter-spacing:.2px}
+.hero p{margin:0 0 18px;opacity:.9;max-width:760px}
+.search{display:flex;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.18);max-width:820px}
+.search input{flex:1;border:0;padding:15px 16px;font-size:17px;color:#1b1f24;min-width:0;background:#fff}
+.search input:focus{outline:none}
+.search button{border:0;background:var(--accent);color:#fff;font-weight:600;padding:0 22px;cursor:pointer}
+.quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.quick span{font-size:13px;opacity:.8;align-self:center;margin-right:4px}
+.qchip{border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:6px 12px;font-size:14px;cursor:pointer}
+.qchip[aria-pressed="true"]{background:#fff;color:var(--navy);border-color:#fff}
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:-18px auto 8px;position:relative}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-align:left;cursor:pointer;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px}
+.tile b{font-size:14.5px;line-height:1.25}
+.tile small{color:var(--muted);font-size:12.5px}
+.tile[aria-pressed="true"]{border-color:var(--navy-2);outline:2px solid var(--navy-2)}
+.layout{display:grid;grid-template-columns:270px 1fr;gap:24px;margin:22px auto 40px}
+aside.filters{position:sticky;top:12px;align-self:start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 14px 14px;max-height:calc(100vh - 24px);overflow:auto}
+.fgroup{border-bottom:1px solid var(--line);padding:12px 0}
+.fgroup:last-child{border-bottom:0}
+.fgroup h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 8px}
+.opt{display:flex;align-items:flex-start;gap:8px;font-size:14.5px;padding:3px 0;cursor:pointer}
+.opt input{margin-top:4px;accent-color:var(--navy-2)}
+.opt .n{margin-left:auto;color:var(--muted);font-size:12.5px;padding-left:6px}
+.more{background:none;border:0;color:var(--navy-2);padding:4px 0;cursor:pointer;font-size:14px}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14.5px;padding:5px 0;cursor:pointer}
+.toggle input{accent-color:var(--navy-2);width:18px;height:18px}
+.resbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.resbar h2{font-size:17px;margin:0;font-weight:600}
+.resbar select{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:7px 10px}
+.active{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.achip{background:var(--chip);color:var(--chip-ink);border:0;border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer}
+.achip::after{content:" ×";opacity:.7}
+.clear{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px}
+.guide{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:16px 18px;margin-bottom:14px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.guide h3{margin:0 0 4px;font-family:var(--serif);font-size:20px}
+.guide p{margin:0;color:var(--muted);font-size:14.5px;max-width:640px}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--navy-2);color:#fff;border:0;border-radius:8px;padding:9px 14px;text-decoration:none;font-weight:600;font-size:14.5px;cursor:pointer;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--navy-2);border:1px solid var(--navy-2)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.ghost{color:#8fb8e6;border-color:#8fb8e6}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.badge{font-size:12px;font-weight:600;border-radius:6px;padding:2px 8px;background:var(--chip);color:var(--chip-ink)}
+.badge.rev{background:var(--ok-bg);color:var(--ok)}
+.badge.open{background:var(--ok-bg);color:var(--ok)}
+.badge.soon{background:var(--warn-bg);color:var(--warn)}
+.badge.muted{background:transparent;color:var(--muted);border:1px solid var(--line);font-weight:500}
+.card h4{margin:2px 0 2px;font-size:18px;line-height:1.3}
+.card h4 button{all:unset;cursor:pointer}
+.card h4 button:hover,.card h4 button:focus-visible{text-decoration:underline}
+.agency{color:var(--muted);font-size:14px;margin-bottom:6px}
+.summary{margin:0 0 8px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:600}
+.details{border-top:1px solid var(--line);margin-top:12px;padding-top:12px;font-size:15px}
+.details h5{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:14px 0 4px}
+.details h5:first-child{margin-top:0}
+.details p{margin:0 0 8px}
+.details ul{margin:0 0 8px;padding-left:20px}
+.opps{list-style:none;padding:0;margin:0}
+.opps li{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:14px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.source{font-size:12.5px;color:var(--muted);margin-top:10px}
+.empty{background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:28px;text-align:center;color:var(--muted)}
+.showmore{display:block;margin:14px auto 0}
+.help{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:0 0 40px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.help h3{font-family:var(--serif);margin:0 0 6px;font-size:19px}
+.help p{margin:0 0 8px;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;padding:18px 0 30px}
+.fbtn{display:none}
+.skel{height:110px;border-radius:12px;background:linear-gradient(90deg,var(--panel),var(--line),var(--panel));background-size:200% 100%;animation:sh 1.2s infinite;margin-bottom:12px}
+@keyframes sh{to{background-position:-200% 0}}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  aside.filters{position:fixed;inset:0 0 0 auto;width:min(360px,92vw);max-height:none;border-radius:0;z-index:20;transform:translateX(100%);transition:transform .2s}
+  aside.filters.open{transform:none;box-shadow:-10px 0 30px rgba(0,0,0,.25)}
+  .fbtn{display:inline-flex}
+  .help{grid-template-columns:1fr}
+  .topics{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;padding-bottom:4px;margin-top:-18px}
+  .tile{flex:0 0 46%;scroll-snap-align:start}
+}
+.closef{display:none}
+@media (max-width:900px){.closef{display:block;margin:10px 0}}
+@media print{.proto,header.top,.hero,.topics,aside,.resbar select,.actions,.showmore,.help,.fbtn{display:none!important}.layout{display:block}.card{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="proto">Prototype for internal review — content is a draft and not yet an official publication.</div>
+<header class="top"><div class="wrap">
+  <div class="brand"><b>New York Funding Finder</b><span>Office of U.S. Senator Kirsten Gillibrand</span></div>
+  <a href="#help">Get help applying</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <h1>Find funding and help for New York</h1>
+  <p>Search federal, New York State, local, and private programs — grants, loans, insurance, and direct help — for individuals, businesses, nonprofits, farmers, schools, Tribes, and local governments.</p>
+  <form class="search" id="searchForm" role="search">
+    <input id="q" type="search" placeholder="Try “flood damage”, “broadband”, “school meals”, “fire department”…" aria-label="Search programs" autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
+  <div class="quick" id="quick"><span>I am…</span></div>
+</div></section>
+
+<div class="wrap"><div class="topics" id="tiles" aria-label="Browse by topic"></div></div>
+
+<div class="wrap layout">
+  <aside class="filters" id="filters" aria-label="Filters">
+    <button class="btn ghost closef" id="closeF" type="button">Done</button>
+    <div class="fgroup"><h3>Show</h3>
+      <label class="toggle"><span>Has an open funding notice</span><input type="checkbox" id="fOpen"></label>
+      <label class="toggle"><span>Reviewed by our office</span><input type="checkbox" id="fRev"></label>
+      <label class="toggle"><span>Include programs not funded this year</span><input type="checkbox" id="fUnfunded"></label>
+    </div>
+    <div class="fgroup"><h3>Level</h3><div id="fLevel"></div></div>
+    <div class="fgroup"><h3>Who can apply</h3><div id="fAud"></div></div>
+    <div class="fgroup"><h3>Type of help</h3><div id="fHelp"></div></div>
+    <div class="fgroup"><h3>Topic</h3><div id="fTopic"></div></div>
+  </aside>
+
+  <main>
+    <div class="resbar">
+      <h2 id="count" aria-live="polite">Loading programs…</h2>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn ghost fbtn" id="openF" type="button">Filters</button>
+        <label style="font-size:14px;color:var(--muted)">Sort
+          <select id="sort">
+            <option value="best">Best match</option>
+            <option value="reviewed">Reviewed by our office first</option>
+            <option value="closing">Closing soonest</option>
+            <option value="az">A–Z</option>
+          </select></label>
+      </div>
+    </div>
+    <div class="active" id="active"></div>
+    <div id="guideBanner"></div>
+    <div id="results"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+  </main>
+</div>
+
+<div class="wrap"><section class="help" id="help">
+  <div>
+    <h3>Request a letter of support</h3>
+    <p>Senator Gillibrand does not decide which organizations receive grants, but in some cases she can write a letter of support for an application. Send a description of your organization, a summary of the application, what the money will be used for, and a draft letter to <a href="mailto:grants@gillibrand.senate.gov">grants@gillibrand.senate.gov</a>.</p>
+  </div>
+  <div>
+    <h3>Need help with a federal agency?</h3>
+    <p>Our office may be able to help with problems you are having with a federal agency. Visit <a href="https://www.gillibrand.senate.gov/help/help-for-new-yorkers/" target="_blank" rel="noopener">gillibrand.senate.gov</a> or call the Washington, D.C. office at (202) 224-4451.</p>
+  </div>
+</section></div>
+
+<footer><div class="wrap">
+  <p id="dataNote">Sources: SAM.gov Assistance Listings (official descriptions of every federal assistance program), Grants.gov (current funding notices), and entries reviewed by our office from official agency and New York State websites. Program details change; confirm with the agency before applying.</p>
+</div></footer>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money = n => n == null ? "" : n >= 1e6 ? "$" + (n/1e6).toFixed(n % 1e6 ? 1 : 0) + " million" : n >= 1000 ? "$" + Math.round(n).toLocaleString() : "$" + n;
+const fmtDate = d => { if(!d) return ""; const m = d.match(/^(\d{2})\/(\d{2})\/(\d{4})$/); const dt = m ? new Date(+m[3], m[1]-1, +m[2]) : new Date(d + "T12:00:00"); return isNaN(dt) ? d : dt.toLocaleDateString("en-US", {month:"short", day:"numeric", year:"numeric"}); };
+const toISO = d => { const m = (d||"").match(/^(\d{2})\/(\d{2})\/(\d{4})$/); return m ? `${m[3]}-${m[1]}-${m[2]}` : ""; };
+const TODAY = new Date().toISOString().slice(0,10);
+
+let D, ITEMS = [], LABEL = {}, shown = 30;
+const S = {q:"", topic:new Set(), level:new Set(), aud:new Set(), help:new Set(), open:false, rev:false, unfunded:false, sort:"best", expanded:new Set()};
+
+const QUICK = [["individuals","An individual or family"],["business","A business"],["nonprofits","A nonprofit"],["local","A local government"],["farmers","A farmer"],["schools","A school or college"],["tribes","A Tribe"]];
+const SYN = {flood:["flood","flooding","flooded"], fire:["fire","firefighter","firefighters","wildfire"], school:["school","schools","education"], farm:["farm","farmer","farmers","agricultural","agriculture"], internet:["internet","broadband"], broadband:["broadband","internet"], food:["food","nutrition","meals"], housing:["housing","home","homes"], business:["business","businesses","entrepreneur"], police:["police","law enforcement"], water:["water","wastewater"]};
+
+function openOpps(it){ return (it.opportunities||[]).filter(o => o.status === "posted" && (!o.close || toISO(o.close) >= TODAY)); }
+function nextClose(it){ const c = openOpps(it).map(o => toISO(o.close)).filter(Boolean).sort(); return c[0] || ""; }
+
+function prep(){
+  for(const it of ITEMS){
+    it._hay = [it.title, it.popular, it.agency, it.summary, it.description, it.who, it.uses, (it.topics||[]).map(t=>LABEL[t]).join(" ")].join(" ").toLowerCase();
+    it._title = (it.title + " " + (it.popular||"")).toLowerCase();
+  }
+}
+
+function score(it, terms){
+  if(!terms.length) return 1;
+  let s = 0;
+  for(const alts of terms){
+    let best = 0;
+    for(const t of alts){
+      if(it._title.includes(t)) best = Math.max(best, 6);
+      else if(it._hay.includes(t)) best = Math.max(best, 1.5);
+    }
+    if(!best) return 0;
+    s += best;
+  }
+  if(it.reviewed) s += 2;
+  return s;
+}
+
+function filtered(except){
+  const terms = S.q.toLowerCase().split(/\s+/).filter(w => w.length > 1 && !["for","the","and","of","in","to","a","my","help"].includes(w)).map(w => SYN[w] || SYN[w.replace(/s$/,"")] || [w, w.replace(/s$/,"")]);
+  const out = [];
+  for(const it of ITEMS){
+    if(!S.unfunded && it.funded === false) continue;
+    if(S.rev && !it.reviewed) continue;
+    if(S.open && !openOpps(it).length) continue;
+    if(except !== "topic" && S.topic.size && !it.topics.some(t => S.topic.has(t))) continue;
+    if(except !== "level" && S.level.size && !S.level.has(it.level)) continue;
+    if(except !== "aud" && S.aud.size && !it.audience.some(a => S.aud.has(a))) continue;
+    if(except !== "help" && S.help.size && !it.help.some(h => S.help.has(h))) continue;
+    const sc = score(it, terms);
+    if(!sc) continue;
+    out.push([sc, it]);
+  }
+  return out;
+}
+
+function counts(key, field){
+  const c = {};
+  for(const [, it] of filtered(key)) for(const v of (field === "level" ? [it.level] : it[field])) c[v] = (c[v]||0) + 1;
+  return c;
+}
+
+function renderOpts(el, list, set, key, field, limit){
+  const c = counts(key, field);
+  const visible = list.filter(o => c[o.id] || set.has(o.id));
+  const lim = el.dataset.all ? 999 : (limit || 999);
+  el.innerHTML = visible.slice(0, lim).map(o => `<label class="opt"><input type="checkbox" value="${o.id}" ${set.has(o.id)?"checked":""}><span>${esc(o.label)}</span><span class="n">${(c[o.id]||0).toLocaleString()}</span></label>`).join("") +
+    (visible.length > lim ? `<button class="more" type="button">Show all ${visible.length}</button>` : "");
+  el.querySelectorAll("input").forEach(i => i.onchange = () => { i.checked ? set.add(i.value) : set.delete(i.value); shown = 30; render(); });
+  const m = el.querySelector(".more"); if(m) m.onclick = () => { el.dataset.all = 1; render(); };
+}
+
+function card(it){
+  const open = openOpps(it), close = nextClose(it);
+  const days = close ? Math.round((new Date(close) - new Date(TODAY)) / 864e5) : null;
+  const badges = [
+    it.reviewed ? `<span class="badge rev">✓ Reviewed by our office</span>` : "",
+    `<span class="badge">${esc(LABEL["lvl:" + it.level] || it.level)}</span>`,
+    open.length ? `<span class="badge ${days != null && days <= 21 ? "soon" : "open"}">${close ? `Open · closes ${fmtDate(close)}` : "Open now"}</span>` : "",
+    (it.opportunities||[]).some(o => o.status === "forecasted") ? `<span class="badge muted">Upcoming notice</span>` : "",
+    it.funded === false ? `<span class="badge muted">Not funded this year</span>` : ""
+  ].join("");
+  const amt = it.amount && it.amount.max ? `<span><b>Typical award:</b> ${it.amount.avg ? money(it.amount.avg) + " average, " : ""}up to ${money(it.amount.max)}</span>` : "";
+  const who = it.audience.length ? `<span><b>For:</b> ${it.audience.map(a => esc(LABEL["aud:" + a])).join(", ")}</span>` : "";
+  const help = `<span><b>Type:</b> ${it.help.map(h => esc(LABEL["help:" + h])).join(", ")}</span>`;
+  const ex = S.expanded.has(it.id);
+  return `<article class="card" id="c-${esc(it.id)}">
+    <div class="badges">${badges}</div>
+    <h4><button type="button" data-id="${esc(it.id)}" aria-expanded="${ex}">${esc(it.title)}</button></h4>
+    <div class="agency">${esc(it.agency || it.department || "")}${it.aln && !it.reviewed ? ` · Assistance Listing ${esc(it.aln)}` : ""}</div>
+    ${ex && it.reviewed ? "" : `<p class="summary">${esc(it.summary)}</p>`}
+    <div class="meta">${who}${help}${amt}</div>
+    ${ex ? details(it) : ""}
+  </article>`;
+}
+
+function details(it){
+  let h = "";
+  if(it.reviewed){ h += it.html; }
+  else {
+    if(it.description && it.description !== it.summary) h += `<h5>About this program</h5><p>${esc(it.description)}</p>`;
+    if(it.who) h += `<h5>Who can apply</h5><p>${esc(it.who)}</p>`;
+    if(it.uses) h += `<h5>How the money can be used</h5><p>${esc(it.uses)}</p>`;
+    if(it.contacts && it.contacts.length) h += `<h5>Program contact</h5><p>${it.contacts.map(esc).join("<br>")}</p>`;
+  }
+  const opps = (it.opportunities||[]).filter(o => o.status === "forecasted" || openOpps(it).includes(o));
+  if(opps.length) h += `<h5>Current funding notices (Grants.gov)</h5><ul class="opps">${opps.slice(0,6).map(o => `<li><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.title)}</a><br><span style="color:var(--muted)">${o.status === "forecasted" ? "Forecasted" : "Open"}${o.close ? " · closes " + fmtDate(toISO(o.close)) : ""} · ${esc(o.number)}</span></li>`).join("")}</ul>`;
+  const links = [
+    it.url ? `<a class="btn" href="${esc(it.url)}" target="_blank" rel="noopener">Official program page</a>` : "",
+    it.listing_url ? `<a class="btn ghost" href="${esc(it.listing_url)}" target="_blank" rel="noopener">Full listing on SAM.gov</a>` : "",
+    `<a class="btn ghost" href="mailto:grants@gillibrand.senate.gov?subject=${encodeURIComponent("Letter of support request: " + it.title)}">Request a letter of support</a>`
+  ].join("");
+  return `<div class="details">${h}<div class="actions">${links}</div>
+    <div class="source">${it.reviewed ? `Last checked ${esc(it.updated)}.` : `Official listing updated ${fmtDate(it.updated)}.`} Source: ${esc((it.source||"").replace(/\s*\((snapshot|via search)[^)]*\)/g,""))}${it.needs_check ? " · Some details are awaiting staff confirmation." : ""}</div></div>`;
+}
+
+function sortList(list){
+  const s = S.sort;
+  if(s === "az") list.sort((a,b) => a[1].title.localeCompare(b[1].title));
+  else if(s === "closing") list.sort((a,b) => (nextClose(a[1]) || "9999").localeCompare(nextClose(b[1]) || "9999") || b[0]-a[0]);
+  else if(s === "reviewed") list.sort((a,b) => (b[1].reviewed - a[1].reviewed) || b[0]-a[0] || a[1].title.localeCompare(b[1].title));
+  else list.sort((a,b) => b[0]-a[0] || (b[1].reviewed - a[1].reviewed) || (openOpps(b[1]).length - openOpps(a[1]).length) || a[1].title.localeCompare(b[1].title));
+  return list;
+}
+
+function render(){
+  const list = sortList(filtered());
+  $("count").textContent = `${list.length.toLocaleString()} program${list.length === 1 ? "" : "s"}`;
+  renderOpts($("fLevel"), D.levels, S.level, "level", "level");
+  renderOpts($("fAud"), D.audiences, S.aud, "aud", "audience");
+  renderOpts($("fHelp"), D.help, S.help, "help", "help");
+  renderOpts($("fTopic"), D.topics, S.topic, "topic", "topics", 12);
+  // topic tiles
+  const tc = counts("topic", "topics");
+  $("tiles").innerHTML = D.topics.filter(t => t.guide).map(t => `<button class="tile" type="button" data-t="${t.id}" aria-pressed="${S.topic.has(t.id)}"><b>${esc(t.label)}</b><small>${(tc[t.id]||0).toLocaleString()} programs${D.guides.some(g => g.topic === t.id) ? " · guide" : ""}</small></button>`).join("");
+  $("tiles").querySelectorAll(".tile").forEach(b => b.onclick = () => { const t = b.dataset.t; if(S.topic.has(t) && S.topic.size === 1) S.topic.clear(); else { S.topic.clear(); S.topic.add(t); } shown = 30; render(); document.querySelector(".layout").scrollIntoView({behavior:"smooth"}); });
+  $("quick").querySelectorAll(".qchip").forEach(b => b.setAttribute("aria-pressed", S.aud.has(b.dataset.a) && S.aud.size === 1));
+  // active chips
+  const chips = [];
+  if(S.q) chips.push(["q", "", `“${S.q}”`]);
+  for(const [set, key, pre] of [[S.topic,"topic",""],[S.level,"level","lvl:"],[S.aud,"aud","aud:"],[S.help,"help","help:"]]) for(const v of set) chips.push([key, v, LABEL[pre + v] || v]);
+  if(S.open) chips.push(["open","","Open funding notice"]); if(S.rev) chips.push(["rev","","Reviewed"]);
+  $("active").innerHTML = chips.map(([k,v,l]) => `<button class="achip" type="button" data-k="${k}" data-v="${esc(v)}">${esc(l)}</button>`).join("") + (chips.length ? `<button class="clear" type="button" id="clearAll">Clear all</button>` : "");
+  $("active").querySelectorAll(".achip").forEach(b => b.onclick = () => { const k = b.dataset.k, v = b.dataset.v;
+    if(k === "q"){ S.q = ""; $("q").value = ""; } else if(k === "open"){ S.open = false; $("fOpen").checked = false; } else if(k === "rev"){ S.rev = false; $("fRev").checked = false; } else S[k].delete(v); render(); });
+  if($("clearAll")) $("clearAll").onclick = () => { S.q=""; $("q").value=""; S.topic.clear(); S.level.clear(); S.aud.clear(); S.help.clear(); S.open=S.rev=false; $("fOpen").checked=$("fRev").checked=false; render(); };
+  // guide banner
+  const g = S.topic.size === 1 ? D.guides.find(g => g.topic === [...S.topic][0]) : null;
+  $("guideBanner").innerHTML = g ? `<div class="guide"><div><h3>${esc(g.title)}</h3><p>${esc(g.intro)} Updated ${esc(g.checked)}.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="${esc(g.pdf)}" target="_blank" rel="noopener">Download the PDF guide</a><button class="btn ghost" type="button" id="onlyRev">See our reviewed entries</button></div></div>` : "";
+  if($("onlyRev")) $("onlyRev").onclick = () => { S.rev = true; $("fRev").checked = true; render(); };
+  // results
+  $("results").innerHTML = list.length ? list.slice(0, shown).map(([,it]) => card(it)).join("") + (list.length > shown ? `<button class="btn ghost showmore" type="button" id="more">Show more (${(list.length - shown).toLocaleString()} left)</button>` : "")
+    : `<div class="empty"><b>No programs match these filters.</b><br>Try fewer filters or a broader search term.</div>`;
+  $("results").querySelectorAll("h4 button").forEach(b => b.onclick = () => { const id = b.dataset.id; S.expanded.has(id) ? S.expanded.delete(id) : S.expanded.add(id); render(); });
+  if($("more")) $("more").onclick = () => { shown += 30; render(); };
+  writeURL();
+}
+
+function writeURL(){
+  const p = new URLSearchParams();
+  if(S.q) p.set("q", S.q);
+  for(const k of ["topic","level","aud","help"]) if(S[k].size) p.set(k, [...S[k]].join(","));
+  if(S.open) p.set("open","1"); if(S.rev) p.set("rev","1"); if(S.unfunded) p.set("all","1"); if(S.sort !== "best") p.set("sort", S.sort);
+  history.replaceState(null, "", p.toString() ? "?" + p : location.pathname);
+}
+function readURL(){
+  const p = new URLSearchParams(location.search);
+  S.q = p.get("q") || ""; $("q").value = S.q;
+  for(const k of ["topic","level","aud","help"]) (p.get(k) || "").split(",").filter(Boolean).forEach(v => S[k].add(v));
+  S.open = p.get("open") === "1"; S.rev = p.get("rev") === "1"; S.unfunded = p.get("all") === "1"; S.sort = p.get("sort") || "best";
+  $("fOpen").checked = S.open; $("fRev").checked = S.rev; $("fUnfunded").checked = S.unfunded; $("sort").value = S.sort;
+}
+
+async function init(){
+  try{
+    D = await (await fetch("data.json", {cache:"no-cache"})).json();
+  }catch(e){ $("results").innerHTML = `<div class="empty">Could not load program data.</div>`; return; }
+  ITEMS = D.items;
+  D.topics.forEach(t => LABEL[t.id] = t.label);
+  D.levels.forEach(t => LABEL["lvl:" + t.id] = t.label);
+  D.audiences.forEach(t => LABEL["aud:" + t.id] = t.label);
+  D.help.forEach(t => LABEL["help:" + t.id] = t.label);
+  prep();
+  $("quick").insertAdjacentHTML("beforeend", QUICK.map(([a,l]) => `<button class="qchip" type="button" data-a="${a}" aria-pressed="false">${l}</button>`).join(""));
+  $("quick").querySelectorAll(".qchip").forEach(b => b.onclick = () => { const a = b.dataset.a; if(S.aud.has(a) && S.aud.size === 1) S.aud.clear(); else { S.aud.clear(); S.aud.add(a); } shown = 30; render(); });
+  const cat = D.catalog || {};
+  $("dataNote").textContent += ` Data built ${fmtDate(D.built)}` + (cat.complete === false || (cat.total_records && cat.listings < cat.total_records) ? ` (federal catalog download in progress: ${Number(cat.listings||0).toLocaleString()} of ${Number(cat.total_records||0).toLocaleString()} programs so far).` : ".");
+  readURL(); render();
+}
+
+$("searchForm").onsubmit = e => { e.preventDefault(); S.q = $("q").value.trim(); shown = 30; render(); document.querySelector(".layout").scrollIntoView({behavior:"smooth"}); };
+$("sort").onchange = () => { S.sort = $("sort").value; render(); };
+$("fOpen").onchange = () => { S.open = $("fOpen").checked; shown = 30; render(); };
+$("fRev").onchange = () => { S.rev = $("fRev").checked; shown = 30; render(); };
+$("fUnfunded").onchange = () => { S.unfunded = $("fUnfunded").checked; shown = 30; render(); };
+$("openF").onclick = () => $("filters").classList.add("open");
+$("closeF").onclick = () => $("filters").classList.remove("open");
+init();
+</script>
+</body>
+</html>
