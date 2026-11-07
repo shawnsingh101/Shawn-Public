@@ -1,0 +1,38 @@
+name: build-guides
+on:
+  schedule:
+    - cron: "23 12 * * *"   # daily refresh of open Grants.gov notices
+  workflow_dispatch:
+  push:
+    branches: [claude/gillibrand-legislative-research-1a5u07]
+    paths: [grants/guides/**, grants/templates/**, grants/tools/build_guide.py, grants/tools/build_site_data.py, grants/site/index.html, .github/workflows/build-guides.yml]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install Word-to-PDF converter and Garamond font
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libreoffice-writer fonts-ebgaramond fonts-crosextra-carlito >/dev/null
+          # Map the template's Garamond to the free EB Garamond so the PDF matches.
+          mkdir -p ~/.config/fontconfig
+          printf '<?xml version="1.0"?><!DOCTYPE fontconfig SYSTEM "fonts.dtd"><fontconfig><alias><family>Garamond</family><prefer><family>EB Garamond</family><family>EB Garamond 12</family></prefer></alias></fontconfig>' > ~/.config/fontconfig/fonts.conf
+          fc-cache -f >/dev/null; fc-match Garamond
+      - run: pip install python-docx==1.2.0 openpyxl==3.1.5
+      - name: Build Word, review sheet, and PDF for each guide
+        run: |
+          for g in grants/guides/*.json; do python grants/tools/build_guide.py "$g" grants/output; done
+          cd grants/output && for f in *.docx; do soffice --headless --convert-to pdf "$f" >/dev/null; done; ls -la
+      - name: Rebuild Funding Finder data
+        run: python grants/tools/build_site_data.py || true
+      - name: Commit outputs
+        run: |
+          git config user.name "harvest-bot"; git config user.email "actions@users.noreply.github.com"
+          git add grants/output grants/site; git diff --cached --quiet && exit 0
+          git commit -m "Rebuild grant guide drafts"
+          for i in 1 2 3; do git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && break; sleep 5; done
