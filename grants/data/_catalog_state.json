@@ -24,8 +24,18 @@
   19,
   20,
   21,
-  22
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29
  ],
- "listings": 2200,
- "calls_last_run": 4
+ "listings": 2842,
+ "calls_last_run": 7,
+ "complete": true,
+ "last_full": "2026-11-05",
+ "changes_since": "2026-11-05"
 }
