@@ -6,7 +6,7 @@
   "Funding Opportunities"
  ],
  "year": "2026",
- "checked": "Nov. 7, 2026",
+ "checked": "Nov. 8, 2026",
  "front": [
   {
    "type": "h1",
@@ -78,15 +78,20 @@
     {
      "title": "FEMA Individual Assistance (DisasterAssistance.gov)",
      "status": "Updated",
-     "changes": "Merged the old 'Disaster Assistance Improvement Program' and 'FEMA' entries into one practical 'how to apply' entry. Fixed the link, which pointed to a staffer's private SharePoint folder. Added hours, application status, and the late-application note from DisasterAssistance.gov.",
-     "verify": "FEMA.gov blocks automated access, so the FEMA Region 2 email (FEMA-R2-ExternalAffairs@fema.dhs.gov) was dropped; re-add it if staff confirm it is still current.",
+     "changes": "Merged the old 'Disaster Assistance Improvement Program' and 'FEMA' entries into one practical 'how to apply' entry. Fixed the link, which pointed to a staffer's private SharePoint folder. Added hours, application status, and the late-application note from DisasterAssistance.gov. Added the types of 'Other Needs' help from FEMA's official listing (97.050).",
+     "verify": "FEMA.gov blocks automated access. FEMA's SAM.gov listings were last updated in 2023, so confirm any 2025–26 FEMA policy changes before printing.",
      "sources": [
-      "https://www.disasterassistance.gov/ (snapshot 01)"
+      "https://www.disasterassistance.gov/ (snapshot 01)",
+      "SAM.gov Assistance Listing 97.050 (FEMA; last updated by the agency Sept. 2023)"
      ],
      "blocks": [
       {
        "type": "p",
        "text": "After a presidentially declared disaster that includes Individual Assistance, FEMA can help eligible people with needs not covered by insurance, such as temporary housing and home repairs. DisasterAssistance.gov is the federal government’s single place to apply for FEMA assistance, check the status of an application, upload documents, and find other recovery help."
+      },
+      {
+       "type": "p",
+       "text": "Besides housing help, FEMA’s Individuals and Households Program can cover other serious disaster-related needs not met by insurance, such as medical and dental costs, child care, funeral costs, personal property, and transportation. You must apply first; FEMA may refer you to SBA for a low-interest loan before some of this help is available."
       },
       {
        "type": "bullets",
@@ -210,15 +215,16 @@
     {
      "title": "Disaster Unemployment Assistance",
      "status": "New",
-     "changes": "New entry: helps workers and self-employed people who lose work because of a declared disaster and do not qualify for regular unemployment insurance.",
+     "changes": "New entry: helps workers and self-employed people who lose work because of a declared disaster and do not qualify for regular unemployment insurance. Confirmed against FEMA's official listing (97.034): weekly benefits plus re-employment services, available only when the declaration includes Individual Assistance.",
      "verify": "",
      "sources": [
-      "https://www.dol.gov/general/disasterrecovery (snapshot 36)"
+      "https://www.dol.gov/general/disasterrecovery (snapshot 36)",
+      "SAM.gov Assistance Listing 97.034 (FEMA; last updated by the agency Sept. 2023)"
      ],
      "blocks": [
       {
        "type": "p",
-       "text": "Disaster Unemployment Assistance provides financial help to people whose job or self-employment was lost or interrupted as a direct result of a major disaster declared by the President, and who are not eligible for regular unemployment insurance. Apply through the New York State Department of Labor after a declaration."
+       "text": "Disaster Unemployment Assistance provides weekly benefits and re-employment services to people whose job or self-employment was lost or interrupted as a direct result of a presidentially declared major disaster that includes Individual Assistance, and who are not eligible for regular unemployment insurance. You will need proof of employment or self-employment. Apply through the New York State Department of Labor after a declaration."
       },
       {
        "type": "p",
@@ -294,10 +300,10 @@
     {
      "title": "Home Energy Assistance (HEAP / LIHEAP)",
      "status": "Updated",
-     "changes": "Renamed to show New York's program name (HEAP), which is how New Yorkers apply for federal LIHEAP funds.",
-     "verify": "The New York OTDA HEAP page and the federal LIHEAP page could not be saved automatically; confirm the link and any emergency-benefit details.",
+     "changes": "Renamed to show New York's program name (HEAP), which is how New Yorkers apply for federal LIHEAP funds. Confirmed against the federal LIHEAP listing (93.568).",
+     "verify": "New York's HEAP page could not be saved automatically; confirm the link and how to apply.",
      "sources": [
-      "2023 guide text"
+      "SAM.gov Assistance Listing 93.568 (HHS; updated Jan. 2026)"
      ],
      "blocks": [
       {
@@ -329,16 +335,17 @@
     {
      "title": "Insurance Help: Flood Insurance and New York State Insurance Assistance",
      "status": "New",
-     "changes": "New entry. Most homeowners policies do not cover flooding; added NFIP claims line and the NYS Department of Financial Services insurance help.",
+     "changes": "New entry. Most homeowners policies do not cover flooding; added NFIP claims line and the NYS Department of Financial Services insurance help. Added NFIP coverage limits from FEMA's official listing (97.022).",
      "verify": "DFS Disaster Hotline (800-339-1759) was found in DFS press releases via search, not on the saved DFS page; confirm before printing.",
      "sources": [
       "https://www.floodsmart.gov/ (snapshot 35)",
-      "https://www.dfs.ny.gov/consumers/disaster_flood (snapshot 54)"
+      "https://www.dfs.ny.gov/consumers/disaster_flood (snapshot 54)",
+      "SAM.gov Assistance Listing 97.022 (FEMA; last updated by the agency Sept. 2023)"
      ],
      "blocks": [
       {
        "type": "p",
-       "text": "Most homeowners and renters insurance does not cover flood damage. Flood insurance is available separately through FEMA’s National Flood Insurance Program (NFIP) for homeowners, renters, and businesses."
+       "text": "Most homeowners and renters insurance does not cover flood damage. Flood insurance is available separately through FEMA’s National Flood Insurance Program (NFIP) for homeowners, renters, and businesses in participating communities. Coverage limits are up to $250,000 for a home and $100,000 for its contents, and up to $500,000 each for non-residential buildings and their contents."
       },
       {
        "type": "bullets",
@@ -367,16 +374,16 @@
     },
     {
      "title": "Disaster Legal Services",
-     "status": "Kept",
-     "changes": "Text kept from 2023 guide.",
-     "verify": "FEMA.gov blocks automated access; confirm the program description is unchanged.",
+     "status": "Updated",
+     "changes": "Confirmed against FEMA's official listing (97.033); added consumer protection and mortgage foreclosure counseling.",
+     "verify": "FEMA's SAM.gov listings were last updated in 2023, so confirm any 2025–26 FEMA policy changes before printing.",
      "sources": [
-      "2023 guide text"
+      "SAM.gov Assistance Listing 97.033 (FEMA; last updated by the agency Sept. 2023)"
      ],
      "blocks": [
       {
        "type": "p",
-       "text": "Disaster Legal Services (DLS) provides free legal help to low-income disaster survivors. FEMA provides this service through an agreement with the Young Lawyers Division of the American Bar Association. DLS may help with insurance claims, replacing wills and other legal papers lost in the disaster, home repair contracts and contractors, problems with landlords, proof of home ownership, and FEMA appeals. DLS attorneys are not FEMA employees, and their services are confidential."
+       "text": "Disaster Legal Services (DLS) provides free legal advice to low-income survivors of a presidentially declared major disaster that includes Individual Assistance. FEMA provides this service through an agreement with the Young Lawyers Division of the American Bar Association, and help is limited to cases that will not generate a fee. DLS can help with insurance claims, landlord and tenant problems, home repair contracts, consumer protection matters, mortgage foreclosure problems, and replacing wills and other important legal documents lost in the disaster."
       },
       {
        "type": "p",
@@ -840,17 +847,21 @@
     {
      "title": "FEMA Public Assistance and Hazard Mitigation (through NYS DHSES)",
      "status": "New",
-     "changes": "New entry for local governments, using the NYS DHSES Recovery page.",
-     "verify": "FEMA.gov blocks automated access. Program details (and the current status of FEMA's mitigation grant programs, which changed in 2025) will be filled in from the SAM.gov listings (97.036, 97.039, 97.029) once the catalog download finishes.",
+     "changes": "New entry for local governments, using the NYS DHSES Recovery page and FEMA's official listings for Public Assistance (97.036), the Hazard Mitigation Grant Program (97.039), and Flood Mitigation Assistance (97.029).",
+     "verify": "FEMA's mitigation grant programs changed in 2025 (including the status of BRIC, 97.047, which is not listed here); confirm current availability with NYS DHSES before printing. FEMA's SAM.gov listings were last updated in 2023, so confirm any 2025–26 FEMA policy changes before printing.",
      "sources": [
-      "https://www.dhses.ny.gov/disaster-recovery (snapshot 53)"
+      "https://www.dhses.ny.gov/disaster-recovery (snapshot 53)",
+      "SAM.gov Assistance Listing 97.036 (FEMA; last updated by the agency Sept. 2023)",
+      "SAM.gov Assistance Listing 97.039 (FEMA; last updated by the agency Sept. 2023)",
+      "SAM.gov Assistance Listing 97.029 (FEMA; last updated by the agency Sept. 2023)"
      ],
      "blocks": [
       {
        "type": "bullets",
        "items": [
-        "**Public Assistance** reimburses governments and certain private nonprofits for disaster response costs and for permanent repairs to public infrastructure.",
-        "**Hazard Mitigation** helps communities plan and carry out long-term projects that reduce future disaster damage to roads, bridges, and buildings. A FEMA-approved hazard mitigation plan is required to receive mitigation funding."
+        "**Public Assistance** helps state, local, and Tribal governments and eligible private nonprofits pay for debris removal, emergency protective measures, and repairing or replacing damaged public facilities and infrastructure after a presidentially declared disaster or emergency.",
+        "**Hazard Mitigation Grant Program** funding becomes available after a major disaster declaration for projects that reduce future risk, such as elevating or retrofitting buildings, buying out flood-prone properties, and other resilience projects. A FEMA-approved hazard mitigation plan is required.",
+        "**Flood Mitigation Assistance** funds projects that reduce or eliminate repeated flood damage to buildings insured by the National Flood Insurance Program, such as elevating homes or buying out repeatedly flooded properties. In New York, DHSES applies on behalf of local governments."
        ]
       },
       {
