@@ -1,16 +1,16 @@
 {
- "updated": "2026-11-09T17:32:32+00:00",
+ "updated": "2026-11-10T16:21:01+00:00",
  "current_congress": 119,
  "api_listed_sponsored": 922,
- "api_listed_cosponsored": 5296,
+ "api_listed_cosponsored": 5297,
  "amendments_skipped": 883,
- "bills_known": 5335,
- "bills_complete": 5335,
+ "bills_known": 5336,
+ "bills_complete": 5336,
  "withdrawn_cosponsorships_excluded": 0,
  "sponsored": 637,
- "cosponsored": 4698,
+ "cosponsored": 4699,
  "with_crs_summary": 4796,
- "fetched_this_run": 0,
- "api_calls_this_run": 26,
+ "fetched_this_run": 1,
+ "api_calls_this_run": 29,
  "finished": true
 }
