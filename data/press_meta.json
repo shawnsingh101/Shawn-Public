@@ -1,9 +1,9 @@
 {
- "updated": "2026-11-12T15:59:00+00:00",
- "total": 7534,
- "added_this_run": 0,
+ "updated": "2026-11-13T15:23:57+00:00",
+ "total": 7537,
+ "added_this_run": 3,
  "oldest": "2001-05-22",
- "newest": "2026-11-10",
+ "newest": "2026-11-12",
  "by_year": {
   "2001": 1,
   "2009": 582,
@@ -23,9 +23,9 @@
   "2023": 281,
   "2024": 283,
   "2025": 256,
-  "2026": 386
+  "2026": 389
  },
- "sitemap_press_urls": 7531,
+ "sitemap_press_urls": 7534,
  "in_sitemap_but_not_in_feed": 0,
  "missing_sample": []
 }
