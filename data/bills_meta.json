@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T15:27:37+00:00",
+ "updated": "2026-11-14T14:12:37+00:00",
  "current_congress": 119,
  "api_listed_sponsored": 923,
  "api_listed_cosponsored": 5301,
@@ -10,7 +10,7 @@
  "sponsored": 638,
  "cosponsored": 4701,
  "with_crs_summary": 4796,
- "fetched_this_run": 1,
- "api_calls_this_run": 28,
+ "fetched_this_run": 0,
+ "api_calls_this_run": 26,
  "finished": true
 }
